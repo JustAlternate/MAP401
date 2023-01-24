@@ -38,6 +38,7 @@ int test_creer_image(){
 	printf(" %s FAILED%s\n",ANSI_COLOR_RED,RESET_COLOR);
 	return 1;
     }
+    supprimer_image(&img_10_10);
     return 0;
 
 }
@@ -81,6 +82,7 @@ int test_get_pixel_image(){
 	return 1;
     }
 
+    supprimer_image(&img_10_10);
     return 0;
 }
 
@@ -123,6 +125,7 @@ int test_set_pixel_image(){
 	return 1;
     }
 
+    supprimer_image(&img_1_1);
     return 0;
 }
 
@@ -157,6 +160,9 @@ int test_largeur_image(){
 	printf(" %s FAILED%s\n",ANSI_COLOR_RED,RESET_COLOR);
 	return 1;
     }
+    supprimer_image(&img_26_1);
+    supprimer_image(&img_3_3);
+    supprimer_image(&img_0_0);
     return 0;
 }
 
@@ -190,14 +196,15 @@ int test_hauteur_image(){
 	printf(" %s FAILED%s\n",ANSI_COLOR_RED,RESET_COLOR);
 	return 1;
     }
+    supprimer_image(&img_0_0);
+    supprimer_image(&img_3_3);
+    supprimer_image(&img_26_1);
     return 0;
 }
 
-
 int test_lire_fichier_image(){
 
-
-    printf("Test fonction lire_fichier_image : \n");
+    printf("Test fonction lire_fichier_image sur tout les fichiers de IMAGES_TEST : \n");
 
     struct dirent *de;  // Pointer for directory entry
   
@@ -212,11 +219,12 @@ int test_lire_fichier_image(){
     char name[50];
     while ((de = readdir(dr)) != NULL){ // J'ai aucune idée de ce qu'est cette magie noir de boucle while, jai copié sur internet je voulais juste une fonction qui me lister la liste des fichier dans un repertoire.
 	if ((strcmp(de->d_name,".")!= 0) && (strcmp(de->d_name,"..") !=0)){
-	    printf("Test sur l'image %s\n",de->d_name);
+	    printf("Test sur l'image %s",de->d_name);
 	    strcpy(name,"IMAGES_TEST/");
 	    strcat(name,de->d_name);
 	    Image img = lire_fichier_image(name); 
 	    supprimer_image(&img);
+	    printf(" %sSUCCESS%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
 	}
     }
   
@@ -225,9 +233,102 @@ int test_lire_fichier_image(){
     return 0;
 }
 
-void test_module_img(){
+int test_ecrire_image(){
+    printf("Test fonction ecrire_image : \n");
+    struct dirent *de;  // Pointer for directory entry
+    DIR *dr = opendir("IMAGES_TEST");
+    if (dr == NULL)  // opendir returns NULL if couldn't open directory
+    {
+        printf("Could not open current directory" );
+        return 1;
+    }
+    char name[50];
+    char reponse;
+    while ((de = readdir(dr)) != NULL){ // J'ai aucune idée de ce qu'est cette magie noir de boucle while, jai copié sur internet je voulais juste une fonction qui me lister la liste des fichier dans un repertoire.
+	if ((strcmp(de->d_name,".")!= 0) && (strcmp(de->d_name,"..") !=0)){
+	    printf("Test sur l'image %s\n",de->d_name);
+	    strcpy(name,"IMAGES_TEST/");
+	    strcat(name,de->d_name);
+	    Image img = lire_fichier_image(name); 
+	    if(hauteur_image(img) <300 && largeur_image(img) < 300){
+		ecrire_image(img);
+	    }else{
+		printf("l'image fonctionne mais est trop grande pour etre affichée\n");
+		reponse = 'n';
+		printf("Passer a l'image suivante ? (y/n) ");
+		scanf("%c", &reponse);
+		if (reponse == 'n'){
+		    ecrire_image(img);
+		}
+	    }
+	    supprimer_image(&img);
+	    printf(" %sSUCCESS%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
+	}
+    }
+    closedir(dr);  
 
+
+    return 0;
+}
+
+int test_negatif_image(){
+    printf("Test fonction negatif_image : \n");
+
+    Image img = creer_image(4,4);
+    Image notimg = negatif_image(img);
+    Pixel *p_I = notimg.pointeur_vers_le_tableau_de_pixels;
+
+    printf("Test 1/4");
+    // Test que le tableau de l'image negatif n'est pas nulle
+    if (p_I != NULL) {
+	printf(" %s SUCCESS%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
+    }else{
+	printf(" %s FAILED%s\n",ANSI_COLOR_RED,RESET_COLOR);
+	return 1;
+    }
+
+    printf("Test 2/4");
+    // Test que l'image negatif a la meme hauteur et largeur que l'image de base.
+    if (largeur_image(notimg)==largeur_image(img) && hauteur_image(img)==hauteur_image(notimg)) {
+	printf(" %s SUCCESS%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
+    }else{
+	printf(" %s FAILED%s\n",ANSI_COLOR_RED,RESET_COLOR);
+	return 1;
+    }
+
+    printf("Test 3/4");
+    // Test que l'image negatif a tout ses pixels differents de l'image d'origine
+    for (int i = 1; i<largeur_image(notimg)+1;i++){
+	for (int j=1;j<hauteur_image(notimg)+1;j++){
+	    if (get_pixel_image(img,j,i)==get_pixel_image(notimg,j,i)){
+		printf(" %s FAILED%s\n",ANSI_COLOR_RED,RESET_COLOR);
+		return 1;
+	    }
+	}
+    }
+    printf(" %s SUCCESS%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
     
+
+    printf("Test 4/4");
+    Image notnotimg = negatif_image(notimg);
+    // Test que l'image negatif de l'image negatif a les memes pixel que l'image d'origine
+    for (int i = 1; i<largeur_image(notnotimg)+1;i++){
+	for (int j=1;j<hauteur_image(notnotimg)+1;j++){
+	    if (get_pixel_image(img,j,i)!=get_pixel_image(notnotimg,j,i)){
+		printf(" %s FAILED%s\n",ANSI_COLOR_RED,RESET_COLOR);
+		return 1;
+	    }
+	}
+    }
+    printf(" %s SUCCESS%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
+    supprimer_image(&notnotimg);
+    supprimer_image(&notnotimg);
+    supprimer_image(&img);
+    return 0;
+}
+
+int main(int argc, char** argv){
+
     printf("Lancement des ");
     printf("%stests%s",ANSI_COLOR_GREEN,RESET_COLOR);
     printf(" du module image...\n");
@@ -262,17 +363,16 @@ void test_module_img(){
     }else{
 	printf("%sla fonction lire_fichier_image() est fonctionnelle.%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
     }
-
-
-
+    if (test_ecrire_image()){
+	fprintf(stderr,"%sIl y a eu une erreur dans les tests de la fonction ecrire_image()%s\n",ANSI_COLOR_RED,RESET_COLOR);
+    }else{
+	printf("%sla fonction ecrire_image() est fonctionnelle.%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
+    }
+    if (test_negatif_image()){
+	fprintf(stderr,"%sIl y a eu une erreur dans les tests de la fonction negatif_image()%s\n",ANSI_COLOR_RED,RESET_COLOR);
+    }else{
+	printf("%sla fonction negatif_image() est fonctionnelle.%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
+    }
+    return 1;
 }
 
-
-
-
-int main(int argc, char** argv){
-
-    test_module_img();
-
-    return 0;
-}
