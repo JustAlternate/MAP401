@@ -6,7 +6,6 @@
 //#include<stdlib.h>
 //#include<string.h>
 #include<math.h>
-#include"types_macros.h"
 #include"geometrie.h"
 
 
@@ -68,7 +67,7 @@ double produit_scalaire(Vecteur v1, Vecteur v2){
 
 //renvoie la norme de v aussi notée |v|
 double norme(Vecteur v){
-    sqrt(produit_scalaire(v, v));
+    return sqrt(produit_scalaire(v, v));
 }
 //point
 //renvoie p1+p2
@@ -79,6 +78,7 @@ Point addition_Point(Point p1, Point p2){
 Point produit_point(double λ, Point p){
     return nouveau_point(λ * p.x, λ * p.y);
 }
+//renvoie la distance en =tre le point p1 et p2
 double distance_points(Point p1, Point p2){
-    
+    return norme(couple_point_to_vecteur(p1, p2));
 }
