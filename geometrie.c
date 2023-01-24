@@ -71,7 +71,7 @@ double norme(Vecteur v){
 }
 //point
 //renvoie p1+p2
-Point addition_Point(Point p1, Point p2){
+Point addition_point(Point p1, Point p2){
     return nouveau_point(p1.x + p2.x, p1.y + p2.y);
 }
 //renvoie λ*p
@@ -79,6 +79,6 @@ Point produit_point(double λ, Point p){
     return nouveau_point(λ * p.x, λ * p.y);
 }
 //renvoie la distance en =tre le point p1 et p2
-double distance_points(Point p1, Point p2){
+double distance_point(Point p1, Point p2){
     return norme(couple_point_to_vecteur(p1, p2));
 }

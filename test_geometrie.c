@@ -131,7 +131,92 @@ void test_addition_vecteur(){
     afficher_resultat_test(egale_vecteur(addition_vecteur(nouveau_vecteur(5,2.5),nouveau_vecteur(0.25,2)), addition_vecteur(nouveau_vecteur(0.25,2),nouveau_vecteur(5,2.5))));
 }
 
+void test_produit_vecteur(){
+    printf("Test fonction produit_vecteur\n");
+    
+    printf("Test 1/3");
+    afficher_resultat_test(egale_vecteur(produit_vecteur(5,nouveau_vecteur(5,5)), nouveau_vecteur(5*5,5*5)));
 
+    
+    printf("Test 2/3");
+    afficher_resultat_test(egale_vecteur(produit_vecteur(-1,nouveau_vecteur(2,-8)), nouveau_vecteur(-2,8)));
+
+
+    printf("Test 3/3");
+    afficher_resultat_test(egale_vecteur(produit_vecteur(0,nouveau_vecteur(64568,2.51365)), nouveau_vecteur(0,0)));
+}
+
+void test_produit_scalaire(){
+    printf("Test fonction produit_scalaire\n");
+    
+    printf("Test 1/3");
+    afficher_resultat_test(produit_scalaire(nouveau_vecteur(5,0),nouveau_vecteur(0,784523)) == 0);
+
+    
+    printf("Test 2/3");
+    afficher_resultat_test(produit_scalaire(nouveau_vecteur(5,1006),nouveau_vecteur(0,0)) == 0);
+
+
+    printf("Test 3/3");
+    afficher_resultat_test(produit_scalaire(nouveau_vecteur(5,16),nouveau_vecteur(657,77)) == 4517);
+}
+
+void test_norme(){
+    printf("Test fonction norme\n");
+    
+    printf("Test 1/3");
+    afficher_resultat_test(norme(nouveau_vecteur(5,0)) == 5);
+
+    
+    printf("Test 2/3");
+    afficher_resultat_test(norme(nouveau_vecteur(3,4)) == 5);
+
+
+    printf("Test 3/3");
+    afficher_resultat_test(norme(nouveau_vecteur(0,0)) == 0);
+}
+void test_addition_point(){
+    printf("Test fonction addition_point\n");
+    
+    printf("Test 1/3");
+    afficher_resultat_test(egale_point(addition_point(nouveau_point(0,0),nouveau_point(5,5)), nouveau_point(5,5)));
+
+    
+    printf("Test 2/3");
+    afficher_resultat_test(egale_point(addition_point(nouveau_point(-5,5),nouveau_point(2,-8)), nouveau_point(-3,-3)));
+
+
+    printf("Test 3/3");// v1+v2 == v2+v1
+    afficher_resultat_test(egale_point(addition_point(nouveau_point(5,2.5),nouveau_point(0.25,2)), addition_point(nouveau_point(0.25,2),nouveau_point(5,2.5))));
+}
+
+void test_produit_point(){
+    printf("Test fonction produit_point\n");
+    
+    printf("Test 1/3");
+    afficher_resultat_test(egale_point(produit_point(5,nouveau_point(5,5)), nouveau_point(5*5,5*5)));
+
+    
+    printf("Test 2/3");
+    afficher_resultat_test(egale_point(produit_point(-1,nouveau_point(2,-8)), nouveau_point(-2,8)));
+
+
+    printf("Test 3/3");
+    afficher_resultat_test(egale_point(produit_point(0,nouveau_point(64568,2.51365)), nouveau_point(0,0)));
+}
+
+void test_distance_point(){
+    printf("Test fonction distance_point\n");
+    
+    printf("Test 1/3");
+    afficher_resultat_test(distance_point(nouveau_point(0,0),nouveau_point(3,4)) == 5);
+    
+    printf("Test 2/3");
+    afficher_resultat_test(distance_point(nouveau_point(-5,8),nouveau_point(-5,8)) == 0);
+
+    printf("Test 3/3");
+    afficher_resultat_test( 2 * distance_point(nouveau_point(0,0),nouveau_point(-5,8)) == distance_point(nouveau_point(5,-8),nouveau_point(-5,8)));
+}
 
 int main(int argc, char** argv){
     test_nouveau_point();
@@ -140,5 +225,11 @@ int main(int argc, char** argv){
     test_vecteur_to_point();
     test_couple_point_to_vecteur();
     test_addition_vecteur();
+    test_produit_vecteur();
+    test_produit_scalaire();
+    test_norme();
+    test_addition_point();
+    test_produit_point();
+    test_distance_point();
     return 1;
 }
