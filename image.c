@@ -248,13 +248,14 @@ void ecrire_image(Image I){
 /* la fonction renvoie l'image "negatif" de I */
 Image negatif_image(Image I)
 {
-	for (int i=1; i<hauteur_image(I)+1;i++){
-		for (int j=1;j<largeur_image(I)+1;j++){
-			set_pixel_image(I,j,i,(get_pixel_image(I,j,i)+1)%2);
+	Image img = creer_image(largeur_image(I),hauteur_image(I));
+	for (int i=1; i<hauteur_image(img)+1;i++){
+		for (int j=1;j<largeur_image(img)+1;j++){
+			set_pixel_image(img,j,i,(get_pixel_image(I,j,i)+1)%2);
 		}
 	}
 
 
-	return I;
+	return img;
 
-}
+} 
