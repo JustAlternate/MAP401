@@ -73,10 +73,10 @@ Liste_Point concatener_liste_Point(Liste_Point L1, Liste_Point L2)
 
 void print_liste_Point(Liste_Point L){
 	printf("{");
-	Cellule_Point cur = L.first;
+	Cellule_Point* cur = L.first;
 	while(cur!=NULL){
-		printf("(%f,%f), ", cur.val.x, cur.val.y);
-		cur = cur.suiv;
+		printf("(%f,%f), ", cur->val.x, cur->val.y);
+		cur = cur->suiv;
 	}
 	printf("}\n");
 }
