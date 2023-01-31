@@ -90,9 +90,16 @@ test_geometrie.o : test_geometrie.c geometrie.h
 	@echo "Compilation du module test_geometrie"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
-		
 
-contour.o : contour.c contour.h image.h geometrie.h
+sequence_point.o : sequence_point.c sequence_point.h geometrie.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module sequence_point"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+
+contour.o : contour.c contour.h image.h geometrie.h sequence_point.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module contour"
@@ -100,7 +107,7 @@ contour.o : contour.c contour.h image.h geometrie.h
 	$(CC) -c $(COMPILOPTS) $<
 		
 
-test_contour.o : test_contour.c contour.h geometrie.h image.h
+test_contour.o : test_contour.c contour.h sequence_point.h geometrie.h image.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module test_contour"
@@ -125,7 +132,7 @@ test_geometrie : test_geometrie.o geometrie.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 
-test_contour : test_contour.o contour.o geometrie.o image.o
+test_contour : test_contour.o contour.o sequence_point.o geometrie.o image.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

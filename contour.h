@@ -5,6 +5,10 @@
 #ifndef _CONTOUR_H_
 #define _CONTOUR_H_
 
+#include "image.h"
+#include "geometrie.h"
+#include "sequence_point.h"
+
 typedef enum {Nord,Sud,Ouest,Est} Orientation;
 
 Point trouver_pixel_depart(Image I);

@@ -2,12 +2,12 @@
   Implementation du module contour.c
 ******************************************************************************/
 
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "geometrie.h"
 #include "image.h"
-#include "contour.h"
 #include "sequence_point.h"
+#include "contour.h"
 
 Point trouver_pixel_depart(Image I){
 	for (double i = 1; i<hauteur_image(I);i++){
@@ -91,12 +91,12 @@ Contour recherche_contour(Point depart, Image I){
 	vrai_Depart.y --;
 	Orientation ori = Est;
 	Point pos = nouveau_point(vrai_Depart.x,vrai_Depart.y);
-	while(!(pos.x == vrai_Depart.x && pos.y == vrai_Depart.y && ori == Est)){
-		ajouter_element_liste_Point(LC,pos);
+	do{
+		LC = ajouter_element_liste_Point(LC,pos);
 		pos = avancer(pos,ori);
 		ori = nouvelle_orientation(pos, ori, I);
-		printf("Point actuel (%f,%f)",pos.x,pos.y);
 	}
+	while(!(pos.x == vrai_Depart.x && pos.y == vrai_Depart.y && ori == Est));
 	return LC;
 }
 

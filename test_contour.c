@@ -46,10 +46,10 @@ void test_recherche_contour(){
 	Image contour_simple = lire_fichier_image("contour_simple.pbm");
 	Point p = trouver_pixel_depart(contour_simple);
 	Contour Cont = recherche_contour(p,contour_simple);
-
+	print_liste_Point(Cont);
 }
 
 int main(int argc, char** argv){
 	test_trouver_pixel_depart();
-	test_recherche_coutour();
+	test_recherche_contour();
 }
