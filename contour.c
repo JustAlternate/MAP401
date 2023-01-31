@@ -100,3 +100,18 @@ Contour recherche_contour(Point depart, Image I){
 	return LC;
 }
 
+void qui_save_dans_un_fichier(char **name, Liste_Point LC){
+	FILE *f = fopen(name, "w");
+	if (f == NULL){
+		printf("erreur: overture du fichier impossible");
+		return;
+	}
+	fprintf(f, "1\n\n");
+	fprintf("%d", nombre_segment(LC) + 1);
+	Cellule_Point *cur = LC.first;
+	while (cur!=NULL)
+	{
+		fprintf(f, "%f %f", cur->val.x, cur->val.y);
+	}
+	fclose(f);
+}
