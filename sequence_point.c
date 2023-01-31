@@ -80,3 +80,13 @@ void print_liste_Point(Liste_Point L){
 	}
 	printf("}\n");
 }
+
+int nombre_segments(Liste_Point L){
+	int nb = 0;
+	Cellule_Point* cur = L.first;
+	while(cur!=NULL){
+		nb++;
+		cur=cur->suiv;
+	}
+	return nb-1;
+}

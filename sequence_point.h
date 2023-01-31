@@ -23,5 +23,6 @@ Liste_Point ajouter_element_liste_Point(Liste_Point L, Point e);
 Liste_Point supprimer_liste_Point(Liste_Point L);
 Liste_Point concatener_liste_Point(Liste_Point L1, Liste_Point L2);
 void print_liste_Point(Liste_Point l);
+int nombre_segments(Liste_Point L);
 
 #endif
