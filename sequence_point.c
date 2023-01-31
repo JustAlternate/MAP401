@@ -88,5 +88,5 @@ int nombre_segments(Liste_Point L){
 		nb++;
 		cur=cur->suiv;
 	}
-	return nb-1;
+	return nb;
 }

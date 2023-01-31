@@ -107,7 +107,7 @@ void qui_save_dans_un_fichier(char **name, Liste_Point LC){
 		return;
 	}
 	fprintf(f, "1\n\n");
-	fprintf("%d", nombre_segment(LC) + 1);
+	fprintf(f,"%d",nombre_segments(LC));
 	Cellule_Point *cur = LC.first;
 	while (cur!=NULL)
 	{
