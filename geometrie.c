@@ -2,9 +2,9 @@
   implementation module geometrie 2D
 ******************************************************************************/
 
-//#include<stdio.h>
-//#include<stdlib.h>
-//#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 #include<math.h>
 #include"geometrie.h"
 
