@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie
+EXECUTABLES = test_image test_geometrie test_contour
 
 
 #############################################################################
@@ -80,14 +80,30 @@ test_image.o : test_image.c image.h
 geometrie.o : geometrie.c geometrie.h
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Compilation du module image"
+	@echo "Compilation du module geometrie"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
 test_geometrie.o : test_geometrie.c geometrie.h
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Compilation du module image"
+	@echo "Compilation du module test_geometrie"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+		
+
+contour.o : contour.c contour.h image.h geometrie.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+		
+
+test_contour.o : test_contour.c contour.h geometrie.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_contour"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 		
@@ -107,6 +123,15 @@ test_geometrie : test_geometrie.o geometrie.o
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
+
+
+test_contour : test_contour.o contour.o geometrie.o image.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
 
 # regle pour "nettoyer" le r�pertoire
 clean:

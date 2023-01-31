@@ -7,5 +7,7 @@
 
 typedef enum {Nord,Sud,Ouest,Est} Orientation;
 
+Point trouver_pixel_depart(Image I);
+
 
 #endif /* _CONTOUR_H_ */
