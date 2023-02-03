@@ -100,7 +100,7 @@ Contour recherche_contour(Point depart, Image I){
 	return LC;
 }
 
-void qui_save_dans_un_fichier(char **name, Liste_Point LC){
+void qui_save_dans_un_fichier(char *name, Liste_Point LC){
 	FILE *f = fopen(name, "w");
 	if (f == NULL){
 		printf("erreur: overture du fichier impossible");

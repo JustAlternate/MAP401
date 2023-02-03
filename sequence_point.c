@@ -3,6 +3,7 @@
 ******************************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "sequence_point.h"
 #include "geometrie.h"
 
