@@ -21,16 +21,44 @@ void afficher_resultat_test(int b){
 void test_init_fichier_eps(void){
     char nom[100] = "test_EPS1";
     char read[100];
+    printf("tests de init_fichier_eps\n");
+
+    printf("test première ligne\n");
     FILE *f = init_fichier_eps(nom, 0, 0, 100, 100);
     fclose(f);
     FILE *f2 = fopen("test_EPS1.eps", "r");
     if (f2 == NULL){
         afficher_resultat_test( /*false*/ 0);
     }
-    printf("%s",fgets(read, 100, f2));
+    afficher_resultat_test(strcmp(fgets(read, 100, f2), "%!PS-Adobe-3.0 EPSF-3.0"));
+
+    printf("test deuxième ligne\n");
+    afficher_resultat_test(strcmp(fgets(read, 100, f2), "%BoundingBox: 0 0 100 100"));
 }
 
+void test_dessiner_ligne(){
+    char nom[100] = "test_EPS2";
+    char read[100];
+    printf("tests de dessiner_ligne\n");
+    FILE *f = init_fichier_eps(nom, 0, 0, 100, 100);
+    dessiner_ligne(f, 5, 5, 10, 10, 1, 0, 0, 0, 1.5);
+    fclose(f);
+
+    FILE *f2 = fopen("test_EPS2.eps", "r");
+    if (f2 == NULL){
+        afficher_resultat_test( /*false*/ 0);
+    }
+    fgets(read, 100, f2);// les deux 
+    fgets(read, 100, f2);// premières lignes
+
+    printf("test ligne ((5,5),(10,10)) noir strock 1.5 d'epaisseure dans une boite de 0,0,100,100\n");
+    afficher_resultat_test(strcmp(fgets(read, 100, f2), "%BoundingBox: 0 0 100 100"));
+
+
+}
 
 int main(int argc, char** argv){
     test_init_fichier_eps();
+    test_dessiner_ligne();
+    //test_dessiner_contour();
 }
