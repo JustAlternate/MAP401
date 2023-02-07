@@ -62,7 +62,7 @@ void test_dessiner_ligne(){
     printf("Test 1/3\n");
     fgets(read, 100, f2);
     fgets(read2, 100, f2);
-    afficher_resultat_test((0 == strcmp(read, "0 0 moveto 10 10 lineto\n") )&&( 0 == strcmp(read2,"0 0 0 setrgbcolor 1.5 setlinewidth stroke\n")));
+    afficher_resultat_test((0 == strcmp(read, "0 0 moveto 10 10 lineto\n") )&&( 0 == strcmp(read2,"0 0 0 setrgbcolor 1.5 setlinewidth\n")));
 
     printf("Test 2/3\n");
     fgets(read, 100, f2);
@@ -78,7 +78,22 @@ void test_dessiner_ligne(){
     printf("Test 3/3\n");
     fgets(read, 100, f4);
     fgets(read2, 100, f4);
-    afficher_resultat_test((0 == strcmp(read, "100 0 moveto 0 100 lineto\n")) && (0 == strcmp(read2, "0 1 1 setrgbcolor 1.5 setlinewidth stroke\n")));
+    afficher_resultat_test((0 == strcmp(read, "100 0 moveto 0 100 lineto\n")) && (0 == strcmp(read2, "0 1 1 setrgbcolor 1.5 setlinewidth\n")));
+}
+
+void tout_faire(char *nom, int sf){
+	char* nom_pbm = malloc(sizeof(char)*strlen(nom) + 100);
+	char* nom2 = malloc(sizeof(char)*strlen(nom) + 100);
+	strcpy(nom_pbm,"IMAGES_TACHE3/");
+	strcat(nom_pbm,nom);
+    strcpy(nom2, nom);
+    strcat(nom_pbm, ".pbm");
+    Image contour_simple = lire_fichier_image(nom_pbm);
+    Point p = trouver_pixel_depart(contour_simple);
+    Contour Cont = recherche_contour(p,contour_simple);
+    FILE* f = init_fichier_eps(nom2,0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
+    dessiner_contour(Cont,f,sf,0,0,0,1.);
+    fclose(f);
 }
 
 void test_dessiner_contour(){
@@ -97,6 +112,17 @@ void test_dessiner_contour(){
     f = init_fichier_eps("test_EPS5",0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
     dessiner_contour(Cont,f,1,1,0,0,1.);
     fclose(f);
+
+    printf("exportation des images du CR\n");
+    tout_faire("chat", 0);
+    tout_faire("image_ex_poly", 0);
+    tout_faire("coq", 1);
+    tout_faire("elephant", 1);
+    tout_faire("gymnaste", 1);
+    tout_faire("labyrinthe", 1);
+    tout_faire("lettreZ", 1);
+    tout_faire("map401", 1);
+    tout_faire("tete", 1);
 }
 
 int main(int argc, char** argv){
