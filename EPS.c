@@ -35,9 +35,9 @@ void dessiner_ligne(FILE* f, int x_dep,int y_dep,int x_fin, int y_fin, bool styl
 	*/
 	fprintf(f,"%d %d moveto %d %d lineto\n",x_dep,y_dep,x_fin,y_fin);
 	if (style){
-		fprintf(f,"%d %d %d setrgbcolor %f setlinewidth stroke\n",r,g,b,width);
+		fprintf(f,"%d %d %d setrgbcolor %.1f setlinewidth stroke\n",r,g,b,width);
 	}else{
-		fprintf(f,"%d %d %d setrgbcolor %f setlinewidth\n",r,g,b,width);
+		fprintf(f,"%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
 	}
 }
 
