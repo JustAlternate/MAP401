@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie test_contour
+EXECUTABLES = test_image test_geometrie test_contour test_EPS
 
 
 #############################################################################
@@ -113,7 +113,20 @@ test_contour.o : test_contour.c contour.h sequence_point.h geometrie.h image.h
 	@echo "Compilation du module test_contour"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
-		
+
+EPS.o : EPS.c EPS.h contour.h geometrie.h image.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+test_EPS.o : test_EPS.c EPS.h contour.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
 ########################################################
 # regles explicites de creation des executables
 
@@ -139,7 +152,12 @@ test_contour : test_contour.o contour.o sequence_point.o geometrie.o image.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-
+test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
 # regle pour "nettoyer" le r�pertoire
 clean:
 	rm -fR $(EXECUTABLES) *.o 
