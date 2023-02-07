@@ -67,4 +67,5 @@ void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, fl
 	if (!style){
 		fprintf(f,"fill\n");
 	}
+	fprintf(f,"showpage");
 }
