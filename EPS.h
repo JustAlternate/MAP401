@@ -12,8 +12,8 @@
 
 char* name_to_name_eps(char* nom_fichier);
 FILE* init_fichier_eps(char* nom_fichier,int xmin, int ymin, int xmax, int ymax);
-void dessiner_ligne(char* nom_fichier, int x_dep,int y_dep,int x_fin, int y_fin, bool style, bool r, bool g, bool b, float width);
-void dessiner_contour(Contour CT, char* nom_fichier,bool style, bool r, bool g, bool b, float width);
+void dessiner_ligne(FILE* f, int x_dep,int y_dep,int x_fin, int y_fin, bool style, bool r, bool g, bool b, float width);
+void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, float width);
 
 
 #endif /* _EPS_H_ */
