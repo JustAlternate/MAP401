@@ -34,11 +34,7 @@ void dessiner_ligne(FILE* f, int x_dep,int y_dep,int x_fin, int y_fin, bool styl
 	width: la largeur du trait dessiné en float.
 	*/
 	fprintf(f,"%d %d moveto %d %d lineto\n",x_dep,y_dep,x_fin,y_fin);
-	if (style){
-		fprintf(f,"%d %d %d setrgbcolor %.1f setlinewidth stroke\n",r,g,b,width);
-	}else{
-		fprintf(f,"%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
-	}
+	fprintf(f,"%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
 }
 
 
@@ -55,17 +51,18 @@ void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, fl
 	width: la largeur du trait dessiné en float.
 	*/
 	Cellule_Point* p1 = CT.first;
-	Cellule_Point* p2 = p1->suiv;
-	while(p2!=NULL){
-		dessiner_ligne(f,p1->val.x,p1->val.y,p2->val.x,p2->val.y,0,0,0,1,1);
+	fprintf(f,"%d %d moveto ",(int)p1->val.x,(int)p1->val.y);
+	p1 = p1->suiv;
+	while(p1!=NULL){
+		fprintf(f,"%d %d lineto ",(int)p1->val.x,(int)p1->val.y);
 		p1 = p1->suiv;
-		p2 = p2->suiv;
 	}
-	p2 = CT.first;
-	dessiner_ligne(f,p1->val.x,p1->val.y,p2->val.x,p2->val.y,0,0,0,1,1);
-
-	if (!style){
+	fprintf(f,"%d %d lineto ",(int)CT.first->val.x,(int)CT.first->val.y);
+	fprintf(f,"\n%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
+	if (style){
 		fprintf(f,"fill\n");
+	}else{
+		fprintf(f,"stroke\n");
 	}
 	fprintf(f,"showpage");
 }

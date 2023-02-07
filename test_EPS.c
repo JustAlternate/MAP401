@@ -6,6 +6,7 @@
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_ORANGE  "\033[93m"
 #define RESET_COLOR        "\x1B[0m"
 
 //foncyions pratiques:
@@ -81,11 +82,25 @@ void test_dessiner_ligne(){
 }
 
 void test_dessiner_contour(){
-    
+    printf("Test fonction dessiner_contour\n");
+    printf("Test 1/2\n");
+    printf("%sA VERIFIER SOI-MEME%s\n", ANSI_COLOR_ORANGE, RESET_COLOR);
+    Image contour_simple = lire_fichier_image("contour_simple.pbm");
+    Point p = trouver_pixel_depart(contour_simple);
+    Contour Cont = recherche_contour(p,contour_simple);
+    FILE* f = init_fichier_eps("test_EPS4",0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
+    dessiner_contour(Cont,f,0,1,0,0,1.);
+    fclose(f);
+
+    printf("Test 2/2\n");
+    printf("%sA VERIFIER SOI-MEME%s\n", ANSI_COLOR_ORANGE, RESET_COLOR);
+    f = init_fichier_eps("test_EPS5",0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
+    dessiner_contour(Cont,f,1,1,0,0,1.);
+    fclose(f);
 }
 
 int main(int argc, char** argv){
     test_init_fichier_eps();
     test_dessiner_ligne();
-    //test_dessiner_contour();
+    test_dessiner_contour();
 }
