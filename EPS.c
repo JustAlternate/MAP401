@@ -15,7 +15,6 @@ char* name_to_name_eps(char* nom_fichier){
 
 // Faire une fonction qui initialise un fichier EPS.
 FILE* init_fichier_eps(char* nom_fichier,int xmin, int ymin, int xmax, int ymax){
-
 	char *name = name_to_name_eps(nom_fichier);
 	FILE* f = fopen(name,"w");
 	fprintf(f,"%!PS-Adobe-3.0 EPSF-3.0\n");
@@ -30,11 +29,16 @@ void dessiner_ligne(FILE* f, int x_dep,int y_dep,int x_fin, int y_fin, bool styl
 	nom_fichier: le nom du fichier (avec le .eps a la fin)
 	x_dep,y_dep: les coordonnées en int du point de départ.
 	x_fin,y_fin: les coordonnées en int du point de fin.
-	syle: si 0 = stroke, si 1 = fill
+	syle: si 1 = stroke, si 0 = fill
 	r,g,b: des booléen pour la couleur, exemple si r=1,b=0,g=0 --> couleur rouge.
 	width: la largeur du trait dessiné en float.
 	*/
-
+	fprintf(f,"%d %d moveto %d %d lineto\n",x_dep,y_dep,x_fin,y_fin);
+	if (style){
+		fprintf(f,"%d %d %d setrgbcolor %f setlinewidth stroke\n",r,g,b,width);
+	}else{
+		fprintf(f,"%d %d %d setrgbcolor %f setlinewidth\n",r,g,b,width);
+	}
 }
 
 
@@ -50,4 +54,17 @@ void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, fl
 	r,g,b: des booléen pour la couleur, exemple si r=1,b=0,g=0 --> couleur rouge.
 	width: la largeur du trait dessiné en float.
 	*/
+	Cellule_Point* p1 = CT.first;
+	Cellule_Point* p2 = p1->suiv;
+	while(p2!=NULL){
+		dessiner_ligne(f,p1->val.x,p1->val.y,p2->val.x,p2->val.y,0,0,0,1,1);
+		p1 = p1->suiv;
+		p2 = p2->suiv;
+	}
+	p2 = CT.first;
+	dessiner_ligne(f,p1->val.x,p1->val.y,p2->val.x,p2->val.y,0,0,0,1,1);
+
+	if (!style){
+		fprintf(f,"fill\n");
+	}
 }
