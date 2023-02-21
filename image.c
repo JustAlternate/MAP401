@@ -233,11 +233,12 @@ void ecrire_image(Image I){
 	for (int i = 1; i<hauteur_image(I)+1; i++){
 		for (int j = 1;j<largeur_image(I)+1;j++){
 			if (get_pixel_image(I,j,i)){
-				printf("\033[30;1m#\033[0m");
+				printf("\e[107m  ");
 			}
 			else{
-				printf("\033[37;1m#\033[0m");
+				printf("\e[100m  ");
 			}
+			printf("\e[49m");
 		}
 		printf("\n");
 	}

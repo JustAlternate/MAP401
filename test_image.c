@@ -196,9 +196,6 @@ int test_hauteur_image(){
 	printf(" %s FAILED%s\n",ANSI_COLOR_RED,RESET_COLOR);
 	return 1;
     }
-    supprimer_image(&img_0_0);
-    supprimer_image(&img_3_3);
-    supprimer_image(&img_26_1);
     return 0;
 }
 
@@ -321,9 +318,6 @@ int test_negatif_image(){
 	}
     }
     printf(" %s SUCCESS%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
-    supprimer_image(&notnotimg);
-    supprimer_image(&notnotimg);
-    supprimer_image(&img);
     return 0;
 }
 

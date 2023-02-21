@@ -1,0 +1,3 @@
+contour_simple: L=7 H=9, nb_segment = 14
+contour_tres_simple: L=4, H=3, nb_segment = 6
+contour_tres_tres_simple: L=1, H=1, nb_segment = 4
