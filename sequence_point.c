@@ -91,3 +91,90 @@ int nombre_segments(Liste_Point L){
 	}
 	return nb;
 }
+
+
+Liste_Contour creer_liste_Contour()
+{
+	Liste_Contour L = {0, NULL, NULL};
+	return L;
+}
+Cellule_Contour *creer_element_liste_Contour(Contour v)
+{
+	Cellule_Contour *el;
+	el = (Cellule_Contour *)malloc(sizeof(Cellule_Contour));
+	if (el==NULL)
+	{
+		fprintf(stderr, "creer_element_liste_Contour: allocation impossible\n");
+		exit(-1);
+	}
+	el->val = v;
+	el->suiv = NULL;
+	return el;
+}
+
+Liste_Contour ajouter_element_liste_Contour(Liste_Contour L, Contour e)
+{
+	Cellule_Contour *el;
+	
+	el = creer_element_liste_Contour(e);
+	if (L.taille == 0)
+	{
+		/* premier �l�ment de la liste */
+		L.first = L.last = el;
+	}
+	else
+	{
+		L.last->suiv = el;
+		L.last = el;
+	}
+	L.taille++;
+	return L;
+}
+Liste_Contour supprimer_liste_Contour(Liste_Contour L)
+{
+	Cellule_Contour *el=L.first;
+	
+	while (el) 
+	{		
+		Cellule_Contour *suiv=el->suiv;
+		supprimer_liste_Point(el->val);
+		free(el);
+		el = suiv;
+	}
+	L.first = L.last = NULL; L.taille = 0;
+	return L;
+}
+
+/* concat�ne L2 � la suite de L1, renvoie la liste L1 modifi�e */
+Liste_Contour concatener_liste_Contour(Liste_Contour L1, Liste_Contour L2)
+{
+	/* cas o� l'une des deux listes est vide */
+	if (L1.taille == 0) return L2; 
+	if (L2.taille == 0) return L1;
+	
+	/* les deux listes sont non vides */
+	L1.last->suiv = L2.first; /* lien entre L1.last et L2.first */
+	L1.last = L2.last;        /* le dernier �l�ment de L1 est celui de L2 */
+	L1.taille += L2.taille;   /* nouvelle taille pour L1 */
+	return L1;
+}
+
+void print_liste_Contour(Liste_Contour L){
+	printf("{");
+	Cellule_Contour* cur = L.first;
+	while(cur!=NULL){
+		print_liste_Point(cur->val);
+		cur = cur->suiv;
+	}
+	printf("}\n");
+}
+
+int nombre_Contour(Liste_Contour L){
+	int nb = 0;
+	Cellule_Contour* cur = L.first;
+	while(cur!=NULL){
+		nb++;
+		cur=cur->suiv;
+	}
+	return nb;
+}

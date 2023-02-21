@@ -16,5 +16,6 @@ Point trouver_pixel_depart(Image I);
 Point avancer(Point pos, Orientation ori);
 Orientation nouvelle_orientation(Point pos, Orientation ori, Image I);
 Contour recherche_contour(Point depart, Image I);
+Liste_Contour tout_les_contour(Image I);
 
 #endif /* _CONTOUR_H_ */
