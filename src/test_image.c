@@ -9,6 +9,16 @@
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define RESET_COLOR        "\x1B[0m"
 
+
+void afficher_resultat_test(int b){
+    if (b){
+        printf("%sSUCCESS%s\n", ANSI_COLOR_GREEN, RESET_COLOR);
+    }
+    else{
+        printf("%sFAILED%s\n", ANSI_COLOR_RED, RESET_COLOR);
+    }
+}
+
 int test_creer_image(){
     printf("Test fonction creer_image :\n");
 
@@ -321,7 +331,40 @@ int test_negatif_image(){
     return 0;
 }
 
-int main(int argc, char** argv){
+int test_creer_masque_image(){
+    printf("Test fonction creer_masque_image : \n");
+
+    Image img = creer_image(4,4);
+    Image img_masque = creer_masque(img);
+    Pixel *p_I = img_masque.pointeur_vers_le_tableau_de_pixels;
+
+    printf("Test 1/5: ");
+    // Test que le tableau de l'image negatif n'est pas nulle
+    afficher_resultat_test(p_I != NULL);
+    printf("Test 2/5: ");
+    // Test que l'image negatif a la meme hauteur et largeur que l'image de base.
+    afficher_resultat_test(largeur_image(img_masque) == largeur_image(img) && hauteur_image(img) == hauteur_image(img_masque));
+
+    // Test sur une image créer sois meme:
+    printf("Test 3/5: ");
+    img = lire_fichier_image("../IMAGES_TEST/contour_tres_simple.pbm");
+    img_masque = creer_masque(img);
+    afficher_resultat_test(get_pixel_image(img_masque, 1, 1) == BLANC && get_pixel_image(img_masque, 2, 2) == NOIR);
+    
+    // un autre:
+    printf("Test 4/5: ");
+    img = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
+    img_masque = creer_masque(img);
+    afficher_resultat_test(get_pixel_image(img_masque, 2, 8) == NOIR && get_pixel_image(img_masque, 3, 2) == NOIR);
+    
+    // un autre:
+    printf("Test 5/5: ");
+    img = lire_fichier_image("../IMAGES_TEST/carres_doublement_imbriques_1.pbm");
+    img_masque = creer_masque(img);
+    afficher_resultat_test(get_pixel_image(img_masque, 2, 2) == BLANC && get_pixel_image(img_masque, 3, 2) == NOIR);
+}
+    int main(int argc, char **argv)
+    {
 
     printf("Lancement des ");
     printf("%stests%s",ANSI_COLOR_GREEN,RESET_COLOR);
@@ -367,6 +410,6 @@ int main(int argc, char** argv){
     }else{
 	printf("%sla fonction negatif_image() est fonctionnelle.%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
     }
+    test_creer_masque_image();
     return 1;
-}
-
+    }

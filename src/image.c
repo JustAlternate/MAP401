@@ -264,3 +264,19 @@ Image negatif_image(Image I)
 	return img;
 
 } 
+
+
+Image creer_masque(Image I)
+{
+	int height = hauteur_image(I);
+	int width = largeur_image(I);
+	Image img_masque = creer_image(width,height);
+	for (int i=1; i<height+1;i++){
+		for (int j=1;j<width+1;j++){
+			if (get_pixel_image(I,j,i) == NOIR && get_pixel_image(I,j,i-1) == BLANC){
+			set_pixel_image(img_masque, j, i, NOIR);
+			}
+		}
+	}
+	return img_masque;
+}

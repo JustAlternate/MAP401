@@ -115,12 +115,13 @@ Cellule_Contour *creer_element_liste_Contour(Contour v)
 Liste_Contour ajouter_element_liste_Contour(Liste_Contour L, Contour e)
 {
 	Cellule_Contour *el;
-	
+
 	el = creer_element_liste_Contour(e);
 	if (L.taille == 0)
 	{
 		/* premier �l�ment de la liste */
-		L.first = L.last = el;
+		L.first = el;
+		L.last = el;
 	}
 	else
 	{
@@ -165,6 +166,7 @@ void print_liste_Contour(Liste_Contour L){
 	while(cur!=NULL){
 		print_liste_Point(cur->val);
 		cur = cur->suiv;
+		printf("; ");
 	}
 	printf("}\n");
 }
