@@ -82,8 +82,8 @@ void test_dessiner_ligne(){
 }
 
 void tout_faire(char *nom, int sf){
-	char* nom_pbm = malloc(sizeof(char)*strlen(nom) + 1000);
-	char* nom2 = malloc(sizeof(char)*strlen(nom) + 1000);
+    char* nom_pbm = malloc(sizeof(char)*strlen(nom) + 1000);
+    char* nom2 = malloc(sizeof(char)*strlen(nom) + 1000);
     strcpy(nom_pbm, "../IMAGES_TACHE3/");
     strcat(nom_pbm,nom);
     strcpy(nom2, "../IMAGES_TACHE3/");

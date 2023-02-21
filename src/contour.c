@@ -100,6 +100,25 @@ Contour recherche_contour(Point depart, Image I){
 	return LC;
 }
 
+Contour recherche_contour_et_image_mask(Point depart, Image I, Image mask){
+	Contour LC = creer_liste_Point();
+	Point vrai_Depart = depart;
+	vrai_Depart.x --;
+	vrai_Depart.y --;
+	Orientation ori = Est;
+	Point pos = nouveau_point(vrai_Depart.x,vrai_Depart.y);
+	do{
+		LC = ajouter_element_liste_Point(LC,pos);
+		pos = avancer(pos,ori);
+		ori = nouvelle_orientation(pos, ori, I);
+		if (ori == Est){
+			set_pixel_image(mask,pos.x+1,pos.y+1,0);
+		}
+	}
+	while(!(pos.x == vrai_Depart.x && pos.y == vrai_Depart.y && ori == Est));
+	return LC;
+}
+
 void qui_save_dans_un_fichier(char *name, Liste_Point LC){
 	FILE *f = fopen(name, "w");
 	if (f == NULL){
