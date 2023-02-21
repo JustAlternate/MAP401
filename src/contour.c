@@ -134,3 +134,19 @@ void qui_save_dans_un_fichier(char *name, Liste_Point LC){
 	}
 	fclose(f);
 }
+
+
+Liste_Contour recherche_tous_les_contours(Image img){
+	Image masque = creer_masque(img);
+	Liste_Contour LC = creer_liste_Contour();
+	int hauteur = hauteur_image(img);
+	int largeur = largeur_image(img);
+	for (int x = 1; x < largeur; x++){
+		for (int y = 1; y < hauteur; y++){
+			if (get_pixel_image(masque, x, y) == 1){ //il faut réaliser un contour ici
+					LC = ajouter_element_liste_Contour(LC, recherche_contour_et_image_mask(nouveau_point(x, y), img, masque));
+			}
+		}
+	}
+	return LC;
+}
