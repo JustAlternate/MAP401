@@ -205,7 +205,7 @@ int test_lire_fichier_image(){
 
     struct dirent *de;  // Pointer for directory entry
   
-    DIR *dr = opendir("IMAGES_TEST");
+    DIR *dr = opendir("../IMAGES_TEST");
   
     if (dr == NULL)  // opendir returns NULL if couldn't open directory
     {
@@ -217,7 +217,7 @@ int test_lire_fichier_image(){
     while ((de = readdir(dr)) != NULL){ // J'ai aucune idée de ce qu'est cette magie noir de boucle while, jai copié sur internet je voulais juste une fonction qui me lister la liste des fichier dans un repertoire.
 	if ((strcmp(de->d_name,".")!= 0) && (strcmp(de->d_name,"..") !=0)){
 	    printf("Test sur l'image %s",de->d_name);
-	    strcpy(name,"IMAGES_TEST/");
+	    strcpy(name,"../IMAGES_TEST/");
 	    strcat(name,de->d_name);
 	    Image img = lire_fichier_image(name); 
 	    supprimer_image(&img);
@@ -233,7 +233,7 @@ int test_lire_fichier_image(){
 int test_ecrire_image(){
     printf("Test fonction ecrire_image : \n");
     struct dirent *de;  // Pointer for directory entry
-    DIR *dr = opendir("IMAGES_TEST");
+    DIR *dr = opendir("../IMAGES_TEST");
     if (dr == NULL)  // opendir returns NULL if couldn't open directory
     {
         printf("Could not open current directory" );
@@ -242,9 +242,9 @@ int test_ecrire_image(){
     char name[50];
     char reponse;
     while ((de = readdir(dr)) != NULL){ // J'ai aucune idée de ce qu'est cette magie noir de boucle while, jai copié sur internet je voulais juste une fonction qui me lister la liste des fichier dans un repertoire.
-	if ((strcmp(de->d_name,".")!= 0) && (strcmp(de->d_name,"..") !=0)){
+	if ((strcmp(de->d_name,".")!= 0) && (strcmp(de->d_name,"..") !=0 )){
 	    printf("Test sur l'image %s\n",de->d_name);
-	    strcpy(name,"IMAGES_TEST/");
+	    strcpy(name,"../IMAGES_TEST/");
 	    strcat(name,de->d_name);
 	    Image img = lire_fichier_image(name); 
 	    if(hauteur_image(img) <300 && largeur_image(img) < 300){

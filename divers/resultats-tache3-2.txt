@@ -1,3 +1,9 @@
-contour_simple: L=7 H=9, nb_segment = 14
-contour_tres_simple: L=4, H=3, nb_segment = 6
-contour_tres_tres_simple: L=1, H=1, nb_segment = 4
+chat.pbm: L=250 H=140, nb_segment=880
+coq.pbm: L=700 H=720, nb_segment=5386
+elephant.pbm: L=800 H=700, nb_segment=5344
+gymnaste.pbm: L=1056 H=1647, nb_segment=8784
+image_ex_poly.pbm: L=4 H=4, nb_segment=18
+labyrinthe.pbm: L=221 H=201, nb_segment=44000
+lettreZ.pbm: L=600 H=1029, nb_segment=9396
+map401.pbm: L=830 H=300, nb_segment=8072
+tete.pbm: L=1252 H=1252, nb_segment=8136

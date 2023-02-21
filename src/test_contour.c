@@ -1,12 +1,16 @@
 #include <stdio.h>
+#include <dirent.h>
+#include <string.h>
 #include <stdlib.h>
 #include "image.h"
 #include "geometrie.h"
 #include "sequence_point.h"
 #include "contour.h"
+#include "types_macros.h"
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_ORANGE  "\033[93m"
 #define RESET_COLOR        "\x1B[0m"
 
 //foncyions pratiques:
@@ -74,7 +78,48 @@ void test_recherche_contour(){
 	print_liste_Point(Cont4);    
 }
 
+int generation_resultats_tache3(){
+    printf("Generation du fichier resultat_tach3 dans divers/\n");
+    struct dirent *de;  // Pointer for directory entry
+  
+    DIR *dr = opendir("../IMAGES_TACHE3");
+  
+    if (dr == NULL)  // opendir returns NULL if couldn't open directory
+    {
+        printf("Could not open current directory" );
+        return 1;
+    }
+  
+    char name[50];
+
+    FILE* f = fopen("../divers/resultats-tache3-2.txt","w"); 
+
+    int L,H;
+    Contour CT;
+    int nb_segments;
+    while ((de = readdir(dr)) != NULL){ // J'ai aucune idée de ce qu'est cette magie noir de boucle while, jai copié sur internet je voulais juste une fonction qui me lister la liste des fichier dans un repertoire.
+	if ((strcmp(de->d_name,".")!= 0) && (strcmp(de->d_name,"..") !=0)){
+	    printf("Test sur l'image %s",de->d_name);
+	    strcpy(name,"../IMAGES_TACHE3/");
+	    strcat(name,de->d_name);
+	    Image img = lire_fichier_image(name); 
+	    L = largeur_image(img);
+	    H = hauteur_image(img);
+	    CT = recherche_contour(trouver_pixel_depart(img),img);
+	    nb_segments = nombre_segments(CT);
+	    fprintf(f,"%s: L=%d H=%d, nb_segment=%d\n",de->d_name,L,H,nb_segments);
+	    printf(" %sA VERIF SOIT MEME%s\n",ANSI_COLOR_ORANGE,RESET_COLOR);
+	}
+    }
+  
+    closedir(dr);  
+    fclose(f);
+    return 1;
+
+}
+
 int main(int argc, char** argv){
 	test_trouver_pixel_depart();
 	test_recherche_contour();
+	generation_resultats_tache3();
 }
