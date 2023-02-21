@@ -82,11 +82,16 @@ void test_dessiner_ligne(){
 }
 
 void tout_faire(char *nom, int sf){
-	char* nom_pbm = malloc(sizeof(char)*strlen(nom) + 100);
-	char* nom2 = malloc(sizeof(char)*strlen(nom) + 100);
-	strcpy(nom_pbm,"IMAGES_TACHE3/");
-	strcat(nom_pbm,nom);
-    strcpy(nom2, nom);
+	char* nom_pbm = malloc(sizeof(char)*strlen(nom) + 1000);
+	char* nom2 = malloc(sizeof(char)*strlen(nom) + 1000);
+    strcpy(nom_pbm, "../IMAGES_TACHE3/");
+    strcat(nom_pbm,nom);
+    strcpy(nom2, "../IMAGES_TACHE3/");
+    strcat(nom2,nom);
+    strcat(nom2,".o");
+    printf("le nom1:%s\n", nom2);
+    //strcat(nom2, nom);
+    printf("le nom2:%s\n", nom2);
     strcat(nom_pbm, ".pbm");
     Image contour_simple = lire_fichier_image(nom_pbm);
     Point p = trouver_pixel_depart(contour_simple);
@@ -100,7 +105,7 @@ void test_dessiner_contour(){
     printf("Test fonction dessiner_contour\n");
     printf("Test 1/2\n");
     printf("%sA VERIFIER SOI-MEME%s\n", ANSI_COLOR_ORANGE, RESET_COLOR);
-    Image contour_simple = lire_fichier_image("contour_simple.pbm");
+    Image contour_simple = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
     Point p = trouver_pixel_depart(contour_simple);
     Contour Cont = recherche_contour(p,contour_simple);
     FILE* f = init_fichier_eps("test_EPS4",0,0,largeur_image(contour_simple),hauteur_image(contour_simple));

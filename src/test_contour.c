@@ -23,7 +23,7 @@ void test_trouver_pixel_depart(){
 	printf("Test fonction trouver_pixel_depart : \n");
 	printf("Test 1/2\n");
 	// On va vérifier que le point trouver sur l'image contour_simple.pbm est bien en x=3, y=2
-	Image contour_simple = lire_fichier_image("IMAGES_TEST/contour_simple.pbm");
+	Image contour_simple = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
 	Point p = trouver_pixel_depart(contour_simple);
 	afficher_resultat_test(p.x == 3.0 && p.y == 2.0);
 
@@ -44,7 +44,7 @@ void test_recherche_contour(){
 	printf("Test 1/3\n");
 	// On va verifier que la liste des points pour l'image contour_simple.pbm est la bonne
 	printf("Sur l'image : contour_simple.pbm\n");
-	Image contour_simple = lire_fichier_image("IMAGES_TEST/contour_simple.pbm");
+	Image contour_simple = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
 	Point p = trouver_pixel_depart(contour_simple);
 	Contour Cont = recherche_contour(p,contour_simple);
 	print_liste_Point(Cont);
@@ -52,7 +52,7 @@ void test_recherche_contour(){
 	printf("Test 2/3\n");
 	// On va verifier que la liste des points pour l'image contour_tres_simple.pbm est la bonne
 	printf("Sur l'image : contour_tres_simple.pbm\n");
-	Image contour_tres_simple = lire_fichier_image("IMAGES_TEST/contour_tres_simple.pbm");
+	Image contour_tres_simple = lire_fichier_image("../IMAGES_TEST/contour_tres_simple.pbm");
 	Point p2 = trouver_pixel_depart(contour_tres_simple);
 	Contour Cont2 = recherche_contour(p2,contour_tres_simple);
 	print_liste_Point(Cont2);
@@ -60,7 +60,7 @@ void test_recherche_contour(){
 	printf("Test 3/3\n");
 	// On va verifier que la liste des points pour l'image .pbm est la bonne
 	printf("Sur l'image : contour_tres_tres_simple.pbm\n");
-	Image contour_tres_tres_simple = lire_fichier_image("IMAGES_TEST/contour_tres_tres_simple.pbm");
+	Image contour_tres_tres_simple = lire_fichier_image("../IMAGES_TEST/contour_tres_tres_simple.pbm");
 	Point p3 = trouver_pixel_depart(contour_tres_tres_simple);
 	Contour Cont3 = recherche_contour(p3,contour_tres_tres_simple);
 	print_liste_Point(Cont3);
