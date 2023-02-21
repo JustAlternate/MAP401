@@ -36,7 +36,7 @@ void test_init_fichier_eps(void){
 
     printf("Test 2/2\n");
     fgets(read, 100, f2);
-    afficher_resultat_test(0 == strcmp(read, "%BoundingBox: 0 0 10 10\n"));
+    afficher_resultat_test(0 == strcmp(read, "%%BoundingBox: 0 0 10 10\n"));
 }
 
 void test_dessiner_ligne(){
@@ -97,7 +97,7 @@ void tout_faire(char *nom, int sf){
     Point p = trouver_pixel_depart(contour_simple);
     Contour Cont = recherche_contour(p,contour_simple);
     FILE* f = init_fichier_eps(nom2,0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
-    dessiner_contour(Cont,f,sf,0,0,0,1.);
+    dessiner_contour(Cont,f,sf,0,0,0,1.,hauteur_image(contour_simple));
     fclose(f);
 }
 
@@ -109,13 +109,13 @@ void test_dessiner_contour(){
     Point p = trouver_pixel_depart(contour_simple);
     Contour Cont = recherche_contour(p,contour_simple);
     FILE* f = init_fichier_eps("test_EPS4",0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
-    dessiner_contour(Cont,f,0,1,0,0,1.);
+    dessiner_contour(Cont,f,0,1,0,0,1.,hauteur_image(contour_simple));
     fclose(f);
 
     printf("Test 2/2\n");
     printf("%sA VERIFIER SOI-MEME%s\n", ANSI_COLOR_ORANGE, RESET_COLOR);
     f = init_fichier_eps("test_EPS5",0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
-    dessiner_contour(Cont,f,1,1,0,0,1.);
+    dessiner_contour(Cont,f,1,1,0,0,1.,hauteur_image(contour_simple));
     fclose(f);
 
     printf("exportation des images du CR\n");

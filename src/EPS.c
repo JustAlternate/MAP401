@@ -17,8 +17,8 @@ char* name_to_name_eps(char* nom_fichier){
 FILE* init_fichier_eps(char* nom_fichier,int xmin, int ymin, int xmax, int ymax){
 	char *name = name_to_name_eps(nom_fichier);
 	FILE* f = fopen(name,"w");
-	fprintf(f,"%!PS-Adobe-3.0 EPSF-3.0\n");
-	fprintf(f,"%%BoundingBox: %d %d %d %d\n",xmin,ymin,xmax,ymax);
+	fprintf(f,"\%!PS-Adobe-3.0 EPSF-3.0\n");
+	fprintf(f,"%%%%BoundingBox: %d %d %d %d\n",xmin,ymin,xmax,ymax);
 	return f;
 }
 
@@ -40,7 +40,7 @@ void dessiner_ligne(FILE* f, int x_dep,int y_dep,int x_fin, int y_fin, bool styl
 
 
 // Faire une fonction qui prend un contour et qui dessine le contour dans un fichier EPS
-void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, float width){
+void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, float width, int ymax){
 	/*
 	Initialise un fichier .eps puis utillise la liste chainée contour pour dessiner tout les segments.
 	nom_fichier: le nom du fichier (avec le .eps a la fin)
@@ -51,13 +51,13 @@ void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, fl
 	width: la largeur du trait dessiné en float.
 	*/
 	Cellule_Point* p1 = CT.first;
-	fprintf(f,"%d %d moveto ",(int)p1->val.x,(int)p1->val.y);
+	fprintf(f,"%d %d moveto ",(int)p1->val.x,ymax-(int)p1->val.y);
 	p1 = p1->suiv;
 	while(p1!=NULL){
-		fprintf(f,"%d %d lineto ",(int)p1->val.x,(int)p1->val.y);
+		fprintf(f,"%d %d lineto ",(int)p1->val.x,ymax-(int)p1->val.y);
 		p1 = p1->suiv;
 	}
-	fprintf(f,"%d %d lineto ",(int)CT.first->val.x,(int)CT.first->val.y);
+	fprintf(f,"%d %d lineto ",(int)CT.first->val.x,ymax-(int)CT.first->val.y);
 	fprintf(f,"\n%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
 	if (style){
 		fprintf(f,"fill\n");

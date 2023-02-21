@@ -230,8 +230,10 @@ Image lire_fichier_image(char *nom_f)
 
 /* ecrire l'image I � l'ecran */
 void ecrire_image(Image I){
-	for (int i = 1; i<hauteur_image(I)+1; i++){
-		for (int j = 1;j<largeur_image(I)+1;j++){
+	int height = hauteur_image(I);
+	int width = largeur_image(I);
+	for (int i = 1; i<height+1; i++){
+		for (int j = 1;j<width+1;j++){
 			if (get_pixel_image(I,j,i)){
 				printf("\e[107m  ");
 			}
@@ -249,9 +251,11 @@ void ecrire_image(Image I){
 /* la fonction renvoie l'image "negatif" de I */
 Image negatif_image(Image I)
 {
-	Image img = creer_image(largeur_image(I),hauteur_image(I));
-	for (int i=1; i<hauteur_image(img)+1;i++){
-		for (int j=1;j<largeur_image(img)+1;j++){
+	int height = hauteur_image(I);
+	int width = largeur_image(I);
+	Image img = creer_image(width,height);
+	for (int i=1; i<height+1;i++){
+		for (int j=1;j<width+1;j++){
 			set_pixel_image(img,j,i,(get_pixel_image(I,j,i)+1)%2);
 		}
 	}
