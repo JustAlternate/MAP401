@@ -12,10 +12,10 @@
 //foncyions pratiques:
 void afficher_resultat_test(int b){
     if (b){
-        printf(" %s SUCCESS%s\n", ANSI_COLOR_GREEN, RESET_COLOR);
+        printf("%sSUCCESS%s\n", ANSI_COLOR_GREEN, RESET_COLOR);
     }
     else{
-        printf(" %s FAILED%s\n", ANSI_COLOR_RED, RESET_COLOR);
+        printf("%sFAILED%s\n", ANSI_COLOR_RED, RESET_COLOR);
     }
 }
 
