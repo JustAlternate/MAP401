@@ -89,8 +89,6 @@ void tout_faire(char *nom, int sf){
     strcpy(nom2, "../IMAGES_TACHE3/");
     strcat(nom2,nom);
     strcat(nom2,".o");
-    printf("le nom1:%s\n", nom2);
-    //strcat(nom2, nom);
     printf("le nom2:%s\n", nom2);
     strcat(nom_pbm, ".pbm");
     Image contour_simple = lire_fichier_image(nom_pbm);
