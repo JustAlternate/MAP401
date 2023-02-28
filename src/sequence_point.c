@@ -26,7 +26,7 @@ Cellule_Point *creer_element_liste_Point(Point v)
 	return el;
 }
 
-Liste_Point ajouter_element_liste_Point(Liste_Point* L, Point e)
+void ajouter_element_liste_Point(Liste_Point* L, Point e)
 {
 	Cellule_Point *el;
 	
@@ -123,7 +123,7 @@ Cellule_Contour *creer_element_liste_Contour(Contour v)
 	return el;
 }
 
-Liste_Contour ajouter_element_liste_Contour(Liste_Contour *L, Contour e)
+void ajouter_element_liste_Contour(Liste_Contour *L, Contour e)
 {
 	Cellule_Contour *el;
 
