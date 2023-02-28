@@ -158,6 +158,17 @@ test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
+
+tests:
+	@echo "Lancement test_image"
+	./test_image
+	@echo "Lancement test_geometrie"
+	./test_geometrie
+	@echo "Lancement test_contour"
+	./test_contour
+	@echo "Lancement test_EPS"
+	./test_EPS
+
 # regle pour "nettoyer" le r�pertoire
 clean:
 	rm -fR $(EXECUTABLES) *.o *.eps ../RESULTATS/*.o.eps ../RESULTATS/*.contours ../RESULTATS/*.contours

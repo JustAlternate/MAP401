@@ -81,10 +81,10 @@ void test_dessiner_ligne(){
     afficher_resultat_test((0 == strcmp(read, "100 0 moveto 0 100 lineto\n")) && (0 == strcmp(read2, "0 1 1 setrgbcolor 1.5 setlinewidth\n")));
 }
 
-void tout_faire(char *nom, int sf){
+void tout_faire(char *nom, int style, char* chemin_fichier){
     char* nom_pbm = malloc(sizeof(char)*strlen(nom) + 1000);
     char* nom2 = malloc(sizeof(char)*strlen(nom) + 1000);
-    strcpy(nom_pbm, "../IMAGES_TACHE3/");
+    strcpy(nom_pbm, chemin_fichier);
     strcat(nom_pbm,nom);
     strcpy(nom2, "../RESULTATS/");
     strcat(nom2,nom);
@@ -95,7 +95,30 @@ void tout_faire(char *nom, int sf){
     Point p = trouver_pixel_depart(contour_simple);
     Contour Cont = recherche_contour(p,contour_simple);
     FILE* f = init_fichier_eps(nom2,0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
-    dessiner_contour(Cont,f,sf,0,0,0,1.,hauteur_image(contour_simple));
+    dessiner_contour(Cont,f,style,0,0,0,1.,hauteur_image(contour_simple));
+    fclose(f);
+}
+
+void tout_faire_TACHE5(char *nom, int style, char* chemin_fichier){
+    char* nom_pbm = malloc(sizeof(char)*strlen(nom) + 1000);
+    char* nom2 = malloc(sizeof(char)*strlen(nom) + 1000);
+    strcpy(nom_pbm, chemin_fichier);
+    strcat(nom_pbm,nom);
+    strcpy(nom2, "../RESULTATS/");
+    strcat(nom2,nom);
+    strcat(nom2,".o");
+    printf("%s\n", nom2);
+    strcat(nom_pbm, ".pbm");
+    
+    Image img = lire_fichier_image(nom_pbm);
+    FILE* f = init_fichier_eps(nom2,0,0,largeur_image(img),hauteur_image(img));
+    Liste_Contour LC = recherche_tout_les_contours(img);
+    Contour *cont = LC->first;
+    while (cont != NULL){
+        dessiner_contour(&cont,f,style,0,0,0,1.,hauteur_image(img));
+        cont = cont->suiv
+
+    }
     fclose(f);
 }
 
@@ -116,20 +139,31 @@ void test_dessiner_contour(){
     dessiner_contour(Cont,f,1,1,0,0,1.,hauteur_image(contour_simple));
     fclose(f);
 
-    printf("exportation des images du CR\n");
-    tout_faire("chat", 0);
-    tout_faire("image_ex_poly", 0);
-    tout_faire("coq", 1);
-    tout_faire("elephant", 1);
-    tout_faire("gymnaste", 1);
-    tout_faire("labyrinthe", 1);
-    tout_faire("lettreZ", 1);
-    tout_faire("map401", 1);
-    tout_faire("tete", 1);
+    printf("Exportation des images du CR TACHE4\n");
+    tout_faire("chat", 0, "../IMAGES_TACHE3/");
+    tout_faire("image_ex_poly", 0, "../IMAGES_TACHE3/");
+    tout_faire("coq", 1, "../IMAGES_TACHE3/");
+    tout_faire("elephant", 1 , "../IMAGES_TACHE3/");
+    tout_faire("gymnaste", 1, "../IMAGES_TACHE3/");
+    tout_faire("labyrinthe", 1, "../IMAGES_TACHE3/");
+    tout_faire("lettreZ", 1, "../IMAGES_TACHE3/");
+    tout_faire("map401", 1, "../IMAGES_TACHE3/");
+    tout_faire("tete", 1, "../IMAGES_TACHE3/");
 }
+
+void test_dessiner_contour_CR_TACHE5_PARTIE2(){
+    printf("Exportation des images du CR TACHE5\n");
+    tout_faire_TACHE5("image1_poly",0,"../IMAGES_TACHE5/");
+    tout_faire_TACHE5("image2_poly",0,"../IMAGES_TACHE5/");
+    tout_faire_TACHE5("FranceRegions",0,"../IMAGES_TACHE5/");
+    tout_faire_TACHE5("Droopy_Wolf",0,"../IMAGES_TACHE5/");
+
+}
+
 
 int main(int argc, char** argv){
     test_init_fichier_eps();
     test_dessiner_ligne();
     test_dessiner_contour();
+    test_dessiner_contour_CR_TACHE5_PARTIE2();
 }
