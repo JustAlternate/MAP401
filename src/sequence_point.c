@@ -82,8 +82,19 @@ void print_liste_Point(Liste_Point L){
 	printf("}\n");
 }
 
-int nombre_segments(Liste_Point L){
+int nombre_points(Liste_Point L){
+	//nombre de point dans le contour L
 	int nb = 0;
+	Cellule_Point* cur = L.first;
+	while(cur!=NULL){
+		nb++;
+		cur=cur->suiv;
+	}
+	return nb;
+}
+int nombre_segments(Liste_Point L){
+	//nombre de segments dans le contour L
+	int nb = -1;//il y a un point de plus que de segments
 	Cellule_Point* cur = L.first;
 	while(cur!=NULL){
 		nb++;
@@ -172,6 +183,7 @@ void print_liste_Contour(Liste_Contour L){
 }
 
 int nombre_Contour(Liste_Contour L){
+	//la somme du nombre de Contours dans la liste chainée de contour L (on ne s'intéresse pas à ce que contiennent les contours)
 	int nb = 0;
 	Cellule_Contour* cur = L.first;
 	while(cur!=NULL){
@@ -180,3 +192,27 @@ int nombre_Contour(Liste_Contour L){
 	}
 	return nb;
 }
+int nombre_points_Liste_Contour(Liste_Contour L){
+	//la somme du nombre de points total de la liste de contours L
+	int nb = 0;
+	Cellule_Contour* cur = L.first;
+	while(cur!=NULL){
+		nb+= nombre_points(cur->val);
+		cur=cur->suiv;
+	}
+	return nb;
+}
+int nombre_segments_Liste_Contour(Liste_Contour L){
+	//la somme du nombre de segments total de la liste de contours L
+	int nb = 0;
+	Cellule_Contour* cur = L.first;
+	while(cur!=NULL){
+		nb+= nombre_segments(cur->val);
+		cur=cur->suiv;
+	}
+	return nb;
+}
+
+
+
+

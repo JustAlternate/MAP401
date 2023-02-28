@@ -57,7 +57,6 @@ void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, fl
 		fprintf(f,"%d %d lineto ",(int)p1->val.x,ymax-(int)p1->val.y);
 		p1 = p1->suiv;
 	}
-	fprintf(f,"%d %d lineto ",(int)CT.first->val.x,ymax-(int)CT.first->val.y);
 	fprintf(f,"\n%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
 	if (style){
 		fprintf(f,"fill\n");

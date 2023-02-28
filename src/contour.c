@@ -120,6 +120,7 @@ Contour recherche_contour_et_image_mask(Point depart, Image I, Image mask){
 }
 
 void qui_save_dans_un_fichier(char *name, Liste_Point LC){
+	//    /!\ sauvegarde un contour et non une liste de contours.
 	FILE *f = fopen(name, "w");
 	if (f == NULL){
 		printf("erreur: overture du fichier impossible");
@@ -135,6 +136,26 @@ void qui_save_dans_un_fichier(char *name, Liste_Point LC){
 	fclose(f);
 }
 
+void sauveguarde_LC_contour(char *name, Liste_Contour LC){ 
+	// sauvegarde dans un fichier la liste chainée de contour 
+	//la fonction qui_save_dans_un_fichier ne sauvegarde que un coutour et non une liste de contour
+	FILE *f = fopen(name, "w");	if (f == NULL){
+		printf("erreur: overture du fichier impossible");
+		return;
+	}
+	fprintf(f, "%d\n\n", nombre_Contour(LC));
+	Contour *cont = LC.first;
+	while (cont != NULL)
+	{
+		fprintf(f, "%d", nombre_segments(*cont));
+		Cellule_Point *cell = cont->first;
+		while (cell!=NULL)
+		{
+			fprintf(f, "%f %f", cell->val.x, cell->val.y);
+		}	
+	}
+	fclose(f);
+}
 
 Liste_Contour recherche_tous_les_contours(Image img){
 	Image masque = creer_masque(img);
