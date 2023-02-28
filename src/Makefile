@@ -160,6 +160,6 @@ test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o
 	$(CC) $^ $(LDOPTS) -o $@
 # regle pour "nettoyer" le r�pertoire
 clean:
-	rm -fR $(EXECUTABLES) *.o *.eps ../IMAGES_TACHE3/*.o.eps ../IMAGES_TEST/*.contours ../IMAGES_TACHE3/*.contours
+	rm -fR $(EXECUTABLES) *.o *.eps ../RESULTATS/*.o.eps ../RESULTATS/*.contours ../RESULTATS/*.contours
 clear:
-	rm -fR $(EXECUTABLES) *.o *.eps ../IMAGES_TACHE3/*.o.eps ../IMAGES_TEST/*.contours ../IMAGES_TACHE3/*.contours
+	rm -fR $(EXECUTABLES) *.o *.eps ../RESULTATS/*.o.eps ../RESULTATS/*.contours ../RESULTATS/*.contours

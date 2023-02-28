@@ -79,7 +79,7 @@ void test_recherche_contour(){
 }
 
 int generation_resultats_tache3(){
-    printf("Generation du fichier resultat_tach3 dans divers/\n");
+    printf("Generation du fichier resultat_tach3 dans RESULTATS/\n");
     struct dirent *de;  // Pointer for directory entry
   
     DIR *dr = opendir("../IMAGES_TACHE3");
@@ -92,7 +92,7 @@ int generation_resultats_tache3(){
   
     char name[50];
 
-    FILE* f = fopen("../divers/resultats-tache3-2.txt","w"); 
+    FILE* f = fopen("../RESULTATS/resultats-tache3-2.txt","w"); 
 
     int L,H;
     Contour CT;
