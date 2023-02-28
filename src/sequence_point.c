@@ -42,7 +42,6 @@ void ajouter_element_liste_Point(Liste_Point* L, Point e)
 		L->last = el;
 	}
 	L->taille++;
-	return L;
 }
 Liste_Point supprimer_liste_Point(Liste_Point L)
 {
@@ -136,11 +135,10 @@ void ajouter_element_liste_Contour(Liste_Contour *L, Contour e)
 	}
 	else
 	{
-		L.->last->suiv = el;
+		L->last->suiv = el;
 		L->last = el;
 	}
 	L->taille++;
-	return L;
 }
 Liste_Contour supprimer_liste_Contour(Liste_Contour L)
 {
