@@ -86,10 +86,10 @@ void tout_faire(char *nom, int sf){
     char* nom2 = malloc(sizeof(char)*strlen(nom) + 1000);
     strcpy(nom_pbm, "../IMAGES_TACHE3/");
     strcat(nom_pbm,nom);
-    strcpy(nom2, "../IMAGES_TACHE3/");
+    strcpy(nom2, "../RESULTATS/");
     strcat(nom2,nom);
     strcat(nom2,".o");
-    printf("le nom2:%s\n", nom2);
+    printf("%s\n", nom2);
     strcat(nom_pbm, ".pbm");
     Image contour_simple = lire_fichier_image(nom_pbm);
     Point p = trouver_pixel_depart(contour_simple);
