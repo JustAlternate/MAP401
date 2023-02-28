@@ -30,7 +30,7 @@ typedef struct{
 // Tout ce qui relate des points
 Liste_Point creer_liste_Point();
 Cellule_Point *creer_element_liste_Point(Point v);
-Liste_Point ajouter_element_liste_Point(Liste_Point L, Point e);
+void ajouter_element_liste_Point(Liste_Point* L, Point e);
 Liste_Point supprimer_liste_Point(Liste_Point L);
 Liste_Point concatener_liste_Point(Liste_Point L1, Liste_Point L2);
 void print_liste_Point(Liste_Point l);
@@ -39,7 +39,7 @@ int nombre_segments(Liste_Point L);
 // Tout ce qui relate des Contours
 Liste_Contour creer_liste_Contour();
 Cellule_Contour *creer_element_liste_Contour(Contour v);
-Liste_Contour ajouter_element_liste_Contour(Liste_Contour L, Contour e);
+void ajouter_element_liste_Contour(Liste_Contour* L, Contour e);
 Liste_Contour supprimer_liste_Contour(Liste_Contour L);
 Liste_Contour concatener_liste_Contour(Liste_Contour L1, Liste_Contour L2);
 void print_liste_Contour(Liste_Contour l);
