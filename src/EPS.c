@@ -40,7 +40,7 @@ void dessiner_ligne(FILE* f, int x_dep,int y_dep,int x_fin, int y_fin, bool styl
 
 
 // Faire une fonction qui prend un contour et qui dessine le contour dans un fichier EPS
-void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, float width, int ymax){
+void dessiner_contour(Contour CT, FILE* f, bool r, bool g, bool b, float width, int ymax){
 	/*
 	Initialise un fichier .eps puis utillise la liste chainée contour pour dessiner tout les segments.
 	nom_fichier: le nom du fichier (avec le .eps a la fin)
@@ -58,10 +58,4 @@ void dessiner_contour(Contour CT, FILE* f,bool style, bool r, bool g, bool b, fl
 		p1 = p1->suiv;
 	}
 	fprintf(f,"\n%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
-	if (style){
-		fprintf(f,"fill\n");
-	}else{
-		fprintf(f,"stroke\n");
-	}
-	fprintf(f,"showpage");
 }

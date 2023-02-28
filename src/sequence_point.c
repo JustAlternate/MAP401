@@ -34,7 +34,7 @@ void ajouter_element_liste_Point(Liste_Point* L, Point e)
 	if (L->taille == 0)
 	{
 		/* premier �l�ment de la liste */
-		L->first = L.last = el;
+		L->first = L->last = el;
 	}
 	else
 	{
@@ -103,9 +103,11 @@ int nombre_segments(Liste_Point L){
 }
 
 
-Liste_Contour creer_liste_Contour()
-{
-	Liste_Contour L = {0, NULL, NULL};
+Liste_Contour* creer_liste_Contour(){
+	Liste_Contour *L = malloc(sizeof(Liste_Contour));
+	L->taille = 0;
+	L->first = NULL;
+	L->last = NULL; 
 	return L;
 }
 Cellule_Contour *creer_element_liste_Contour(Contour v)
@@ -169,9 +171,9 @@ Liste_Contour concatener_liste_Contour(Liste_Contour L1, Liste_Contour L2)
 	return L1;
 }
 
-void print_liste_Contour(Liste_Contour L){
+void print_liste_Contour(Liste_Contour *L){
 	printf("{");
-	Cellule_Contour* cur = L.first;
+	Cellule_Contour* cur = L->first;
 	while(cur!=NULL){
 		print_liste_Point(cur->val);
 		cur = cur->suiv;

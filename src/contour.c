@@ -92,7 +92,7 @@ Contour recherche_contour(Point depart, Image I){
 	Orientation ori = Est;
 	Point pos = nouveau_point(vrai_Depart.x,vrai_Depart.y);
 	do{
-		LC = ajouter_element_liste_Point(LC,pos);
+		ajouter_element_liste_Point(&LC,pos);
 		pos = avancer(pos,ori);
 		ori = nouvelle_orientation(pos, ori, I);
 	}
@@ -108,7 +108,7 @@ Contour recherche_contour_et_image_mask(Point depart, Image I, Image mask){
 	Orientation ori = Est;
 	Point pos = nouveau_point(vrai_Depart.x,vrai_Depart.y);
 	do{
-		LC = ajouter_element_liste_Point(LC,pos);
+		ajouter_element_liste_Point(&LC,pos);
 		pos = avancer(pos,ori);
 		ori = nouvelle_orientation(pos, ori, I);
 		if (ori == Est){
@@ -144,11 +144,11 @@ void sauveguarde_LC_contour(char *name, Liste_Contour LC){
 		return;
 	}
 	fprintf(f, "%d\n\n", nombre_Contour(LC));
-	Contour *cont = LC.first;
-	while (cont != NULL)
+	Cellule_Contour *cell_cont = LC.first;
+	while (cell_cont != NULL)
 	{
-		fprintf(f, "%d", nombre_segments(*cont));
-		Cellule_Point *cell = cont->first;
+		fprintf(f, "%d", nombre_segments(cell_cont->val));
+		Cellule_Point *cell = cell_cont->val.first;
 		while (cell!=NULL)
 		{
 			fprintf(f, "%f %f", cell->val.x, cell->val.y);
@@ -157,15 +157,15 @@ void sauveguarde_LC_contour(char *name, Liste_Contour LC){
 	fclose(f);
 }
 
-Liste_Contour recherche_tous_les_contours(Image img){
+Liste_Contour* recherche_tous_les_contours(Image img){
 	Image masque = creer_masque(img);
-	Liste_Contour LC = creer_liste_Contour();
+	Liste_Contour *LC = creer_liste_Contour();
 	int hauteur = hauteur_image(img);
 	int largeur = largeur_image(img);
-	for (int x = 1; x < largeur; x++){
-		for (int y = 1; y < hauteur; y++){
+	for (int x = 1; x <= largeur; x++){
+		for (int y = 1; y <= hauteur; y++){
 			if (get_pixel_image(masque, x, y) == 1){ //il faut réaliser un contour ici
-					LC = ajouter_element_liste_Contour(LC, recherche_contour_et_image_mask(nouveau_point(x, y), img, masque));
+					ajouter_element_liste_Contour(LC, recherche_contour_et_image_mask(nouveau_point(x, y), img, masque));
 			}
 		}
 	}

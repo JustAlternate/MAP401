@@ -121,7 +121,7 @@ int generation_resultats_tache3(){
 void test_recherche_tous_les_contours(){
     printf("on passe sur tous les contours\n");
     Image img = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
-    Liste_Contour LC = recherche_tous_les_contours(img);
+    Liste_Contour *LC = recherche_tous_les_contours(img);
     print_liste_Contour(LC);
 }
 
