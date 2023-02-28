@@ -26,22 +26,22 @@ Cellule_Point *creer_element_liste_Point(Point v)
 	return el;
 }
 
-Liste_Point ajouter_element_liste_Point(Liste_Point L, Point e)
+Liste_Point ajouter_element_liste_Point(Liste_Point* L, Point e)
 {
 	Cellule_Point *el;
 	
 	el = creer_element_liste_Point(e);
-	if (L.taille == 0)
+	if (L->taille == 0)
 	{
 		/* premier �l�ment de la liste */
-		L.first = L.last = el;
+		L->first = L.last = el;
 	}
 	else
 	{
-		L.last->suiv = el;
-		L.last = el;
+		L->last->suiv = el;
+		L->last = el;
 	}
-	L.taille++;
+	L->taille++;
 	return L;
 }
 Liste_Point supprimer_liste_Point(Liste_Point L)
@@ -123,23 +123,23 @@ Cellule_Contour *creer_element_liste_Contour(Contour v)
 	return el;
 }
 
-Liste_Contour ajouter_element_liste_Contour(Liste_Contour L, Contour e)
+Liste_Contour ajouter_element_liste_Contour(Liste_Contour *L, Contour e)
 {
 	Cellule_Contour *el;
 
 	el = creer_element_liste_Contour(e);
-	if (L.taille == 0)
+	if (L->taille == 0)
 	{
 		/* premier �l�ment de la liste */
-		L.first = el;
-		L.last = el;
+		L->first = el;
+		L->last = el;
 	}
 	else
 	{
-		L.last->suiv = el;
-		L.last = el;
+		L.->last->suiv = el;
+		L->last = el;
 	}
-	L.taille++;
+	L->taille++;
 	return L;
 }
 Liste_Contour supprimer_liste_Contour(Liste_Contour L)
