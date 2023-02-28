@@ -118,16 +118,56 @@ int generation_resultats_tache3(){
 
 }
 
+
+void _ecrire_resultat_fichier(FILE* f,char *nom){
+	printf("Test sur l'image %s\n", nom);
+	char *new_nom[1000];
+	strcpy(new_nom, "../IMAGES_TACHE5/");
+	strcat(new_nom, nom);
+	Image img = lire_fichier_image(new_nom);
+	Liste_Contour * LC_cont = recherche_tous_les_contours(img);
+	int nb_segments = nombre_segments_Liste_Contour(*LC_cont);
+	int nb_contours = nombre_Contour(*LC_cont);
+	fprintf(f, "\"%s\" : nb_segments: %d, nb_contours: %d\n", nom, nb_segments, nb_contours);
+}
+
+void generation_resultats_tache5(){
+    printf("Generation du fichier resultat_tach5 dans RESULTATS/\n");
+
+	FILE* f = fopen("../RESULTATS/resultats-tache5.txt", "w");
+	if (f == NULL){
+		printf("impossible d'ouvrire le fichier de sortie des resultats de tache 5, arrêt.`=\n");
+		return;
+	}
+	_ecrire_resultat_fichier(f, "Bugs_Bunny.pbm");
+	_ecrire_resultat_fichier(f, "Charlot.pbm");
+	_ecrire_resultat_fichier(f, "Pink_Panther.pbm");
+	_ecrire_resultat_fichier(f, "animaux.pbm");
+	_ecrire_resultat_fichier(f, "damier_4_5_1.pbm");
+	_ecrire_resultat_fichier(f, "deux-des.pbm");
+	_ecrire_resultat_fichier(f, "dessin-delius.pbm");
+	_ecrire_resultat_fichier(f, "gai-luron.pbm");
+	_ecrire_resultat_fichier(f, "papillon2.pbm");
+	_ecrire_resultat_fichier(f, "image1_poly.pbm");
+	fclose(f);
+	printf(" %sA VERIF SOIT MEME%s\n",ANSI_COLOR_ORANGE,RESET_COLOR);
+}
+
+
+
+
 void test_recherche_tous_les_contours(){
-    printf("on passe sur tous les contours\n");
+    printf("test recherche tous les contours:\n-->voici la liste de contour de contour_simple:\n");
     Image img = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
     Liste_Contour *LC = recherche_tous_les_contours(img);
     print_liste_Contour(LC);
+	printf(" %sA VERIF SOIT MEME%s\n",ANSI_COLOR_ORANGE,RESET_COLOR);
 }
 
 int main(int argc, char** argv){
 	test_trouver_pixel_depart();
 	test_recherche_contour();
 	generation_resultats_tache3();
+	generation_resultats_tache5();
 	test_recherche_tous_les_contours();
 }
