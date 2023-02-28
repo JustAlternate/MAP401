@@ -112,11 +112,10 @@ void tout_faire_TACHE5(char *nom, int style, char* chemin_fichier){
     
     Image img = lire_fichier_image(nom_pbm);
     FILE* f = init_fichier_eps(nom2,0,0,largeur_image(img),hauteur_image(img));
-    Liste_Contour LC = recherche_tout_les_contours(img);
-    Contour *cont = LC->first;
+    Cellule_Contour *cont = recherche_tout_les_contours(img)->first;
     while (cont != NULL){
-        dessiner_contour(&cont,f,style,0,0,0,1.,hauteur_image(img));
-        cont = cont->suiv
+        dessiner_contour(cont->val,f,style,0,0,0,1.,hauteur_image(img));
+        cont = cont->suiv;
 
     }
     fclose(f);

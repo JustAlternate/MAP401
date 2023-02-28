@@ -21,7 +21,7 @@ typedef struct Cellule_Contour_{
 	struct Cellule_Contour_* suiv; /* pointeur sur l'�l�ment suivant */
 } Cellule_Contour;
 
-typedef struct Liste_Contour_{
+typedef struct{
 	unsigned int taille;        /* nombre d'�l�ments dans la liste */
 	Cellule_Contour *first; /* pointeur sur le premier �l�ment de la liste */
 	Cellule_Contour *last;  /* pointeur sur le dernier �l�ment de la liste */
