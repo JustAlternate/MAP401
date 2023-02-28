@@ -99,7 +99,7 @@ int generation_resultats_tache3(){
     int nb_segments;
     while ((de = readdir(dr)) != NULL){ // J'ai aucune idée de ce qu'est cette magie noir de boucle while, jai copié sur internet je voulais juste une fonction qui me lister la liste des fichier dans un repertoire.
 	if ((strcmp(de->d_name,".")!= 0) && (strcmp(de->d_name,"..") !=0)){
-	    printf("Test sur l'image %s",de->d_name);
+	    printf("->image %s\n",de->d_name);
 	    strcpy(name,"../IMAGES_TACHE3/");
 	    strcat(name,de->d_name);
 	    Image img = lire_fichier_image(name); 
@@ -108,9 +108,9 @@ int generation_resultats_tache3(){
 	    CT = recherche_contour(trouver_pixel_depart(img),img);
 	    nb_segments = nombre_segments(CT);
 	    fprintf(f,"%s: L=%d H=%d, nb_segment=%d\n",de->d_name,L,H,nb_segments);
-	    printf(" %sA VERIF SOIT MEME%s\n",ANSI_COLOR_ORANGE,RESET_COLOR);
 	}
     }
+    printf(" %sA VERIF SOIT MEME%s\n",ANSI_COLOR_ORANGE,RESET_COLOR);
   
     closedir(dr);  
     fclose(f);
@@ -120,7 +120,7 @@ int generation_resultats_tache3(){
 
 
 void _ecrire_resultat_fichier(FILE* f,char *nom){
-	printf("Test sur l'image %s\n", nom);
+	printf("->image %s\n", nom);
 	char *new_nom[1000];
 	strcpy(new_nom, "../IMAGES_TACHE5/");
 	strcat(new_nom, nom);
