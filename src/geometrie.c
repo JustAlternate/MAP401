@@ -83,6 +83,10 @@ double distance_point(Point p1, Point p2){
     return norme(couple_point_to_vecteur(p1, p2));
 }
 
+
+
+// CETTE FONCTION EST TESTER DANS LE FICHIER test_simplification_contour.c
+
 double distance_point_segment(Point P, Point A, Point B){
 	if (A.x == B.x && A.y == B.y){
 		return distance_point(A,P);
