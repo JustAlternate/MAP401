@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie test_contour test_EPS
+EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour
 
 
 #############################################################################
@@ -138,6 +138,14 @@ test_image : test_image.o image.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 test_geometrie : test_geometrie.o geometrie.o 
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+
+test_simplification_contour: test_simplification_contour.o geometrie.o 
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
