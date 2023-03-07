@@ -90,7 +90,7 @@ double distance_point_segment(Point P, Point A, Point B){
 	// On est dans le cas A =/= B :
 	
 	// On commence par calculer lambda
-	double lambda = produit_scalaire(couple_point_to_vecteur(A,P),couple_point_to_vecteur(A,B))/produit_scalaure(couple_point_to_vecteur(A,B),couple_point_to_vecteur(A,B));
+	double lambda = produit_scalaire(couple_point_to_vecteur(A,P),couple_point_to_vecteur(A,B))/produit_scalaire(couple_point_to_vecteur(A,B),couple_point_to_vecteur(A,B));
 
 	// Cas lambda < 0 :
 	if (lambda < 0){
