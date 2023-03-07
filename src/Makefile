@@ -160,13 +160,30 @@ test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 tests:
+	@echo "---------------------------------------------"
+	@echo "Lancement du make all"
+	@echo "---------------------------------------------"
+	@sleep 5
+	make all
+	@echo "---------------------------------------------"
 	@echo "Lancement test_image"
-	./test_image
+	@echo "---------------------------------------------"
+	@sleep 5
+	#./test_image
+	@echo "---------------------------------------------"
 	@echo "Lancement test_geometrie"
+	@echo "---------------------------------------------"
+	@sleep 5
 	./test_geometrie
+	@echo "---------------------------------------------"
 	@echo "Lancement test_contour"
+	@echo "---------------------------------------------"
+	@sleep 5
 	./test_contour
+	@echo "---------------------------------------------"
 	@echo "Lancement test_EPS"
+	@echo "---------------------------------------------"
+	@sleep 5
 	./test_EPS
 
 # regle pour "nettoyer" le r�pertoire

@@ -231,5 +231,5 @@ int main(int argc, char** argv){
     test_addition_point();
     test_produit_point();
     test_distance_point();
-    return 1;
+    return 0;
 }

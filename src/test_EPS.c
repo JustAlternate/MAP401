@@ -180,4 +180,5 @@ int main(int argc, char** argv){
     test_dessiner_ligne();
     test_dessiner_contour();
     test_dessiner_contour_CR_TACHE5_PARTIE2();
+    return 0;
 }
