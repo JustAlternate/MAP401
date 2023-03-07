@@ -185,6 +185,8 @@ tests:
 	@echo "---------------------------------------------"
 	@sleep 5
 	./test_EPS
+	@echo "--------------------------"
+	@echo "make tests a bien réussi !"
 
 # regle pour "nettoyer" le r�pertoire
 clean:

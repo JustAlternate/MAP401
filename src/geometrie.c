@@ -82,3 +82,28 @@ Point produit_point(double λ, Point p){
 double distance_point(Point p1, Point p2){
     return norme(couple_point_to_vecteur(p1, p2));
 }
+
+double distance_point_segment(Point P, Point A, Point B){
+	if (A.x == B.x && A.y == B.y){
+		return distance_point(A,P);
+	}
+	// On est dans le cas A =/= B :
+	
+	// On commence par calculer lambda
+	double lambda = produit_scalaire(couple_point_to_vecteur(A,P),couple_point_to_vecteur(A,B))/produit_scalaure(couple_point_to_vecteur(A,B),couple_point_to_vecteur(A,B));
+
+	// Cas lambda < 0 :
+	if (lambda < 0){
+		return distance_point(A,P);
+	}
+
+	// Cas lambda > 1 :
+	if (lambda > 1){
+		return distance_point(A,P);
+	}
+
+	// Dernier cas 0 <= lambda <= 1 :
+	// On calcule le point Q :
+	Point Q = nouveau_point(A.x + lambda * (B.x - A.x),A.y * lambda * (B.y - A.y));
+	return distance_point(Q,P);
+}

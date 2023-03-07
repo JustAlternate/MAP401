@@ -59,6 +59,7 @@ Point addition_point(Point p1, Point p2);
 Point produit_point(double λ, Point p);
 //renvoie la distance en =tre le point p1 et p2
 double distance_point(Point p1, Point p2);
-
+//renvoie la distance point segment entre P, A et B
+double distance_point_segment(Point P, Point A, Point B);
 
 #endif
