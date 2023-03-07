@@ -47,7 +47,7 @@ void jeu_de_test(){
     afficher_resultat_test(distance_point_segment(nouveau_point(8,14), nouveau_point(5,5), nouveau_point(5,10)) == 5); // 1 < λ
 
     printf("Test 10/10 : ");
-    afficher_resultat_test(distance_point_segment(nouveau_point(1,2), nouveau_point(5,5), nouveau_point(5,10)) == 5); // 1 < λ
+    afficher_resultat_test(distance_point_segment(nouveau_point(1,2), nouveau_point(5,5), nouveau_point(5,10)) == 5); // λ < 0
 
 
 
