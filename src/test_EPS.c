@@ -174,14 +174,14 @@ void test_dessiner_contour_CR_TACHE5_PARTIE2(){
 }
 
 
-void test_dessiner_contour_et_remplissage_CR_TACHE6_partie2(){
+void test_dessiner_contour_et_remplissage_CR_TACHE6_partie2(){/*
     printf("Exportation des images du CR TACHE6_2\n");
     tout_faire_TACHE6("image_poly_tache6",0,"../IMAGES_TEST/");
     tout_faire_TACHE6("JoaquimHock-LesArbres",0,"../IMAGES_TEST/");
     tout_faire_TACHE6("cheval",0,"../IMAGES_TEST/");
     tout_faire_TACHE6("elephant-gotlib",0,"../IMAGES_TEST/");
     tout_faire_TACHE6("goudyini-A",0,"../IMAGES_TEST/");
-    tout_faire_TACHE6("papillon2",0,"../IMAGES_TEST/");
+    tout_faire_TACHE6("papillon2",0,"../IMAGES_TEST/");*/
 }
 
 

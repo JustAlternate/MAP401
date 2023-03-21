@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour
+EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment
 
 
 #############################################################################
@@ -117,16 +117,26 @@ test_contour.o : test_contour.c contour.h sequence_point.h geometrie.h image.h
 EPS.o : EPS.c EPS.h contour.h geometrie.h image.h
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Compilation du module test_contour"
+	@echo "Compilation du module EPS"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
 test_EPS.o : test_EPS.c EPS.h contour.h
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Compilation du module test_contour"
+	@echo "Compilation du module test_EPS"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<	
+
+
+
+distance_point_segment.o: distance_point_segment.c geometrie.h types_macros.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module distance_point_segment"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
+
 ########################################################
 # regles explicites de creation des executables
 
@@ -161,6 +171,13 @@ test_contour : test_contour.o contour.o sequence_point.o geometrie.o image.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+distance_point_segment : distance_point_segment.o geometrie.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
