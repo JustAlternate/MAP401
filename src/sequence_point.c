@@ -204,7 +204,7 @@ int nombre_points_Liste_Contour(Liste_Contour L){
 }
 int nombre_segments_Liste_Contour(Liste_Contour L){
 	//la somme du nombre de segments total de la liste de contours L
-	int nb = 0;
+	int nb = 1;
 	Cellule_Contour* cur = L.first;
 	while(cur!=NULL){
 		nb+= nombre_segments(cur->val);

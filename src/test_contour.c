@@ -28,19 +28,19 @@ void test_trouver_pixel_depart(){
 	printf("Test 1/2\n");
 	// On va vérifier que le point trouver sur l'image contour_simple.pbm est bien en x=3, y=2
 	Image contour_simple = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
-	Point p = trouver_pixel_depart(contour_simple,1,1);
+	Point p = trouver_pixel_depart(contour_simple);
 	afficher_resultat_test(p.x == 3.0 && p.y == 2.0);
 
 	printf("Test 2/2\n");
 	// On va vérifier qu'une image sans aucun point noir retourne un point 0,0
 	Image test = creer_image(10,10);
-	Point p2 = trouver_pixel_depart(test,1,1);
+	Point p2 = trouver_pixel_depart(test);
 	afficher_resultat_test(p2.x == 0 && p2.y == 0);
 
 	printf("Test 3/3\n");
 	// On va vérifier qu'une image entierement noir retourne bien le premier point (1,1)
 	Image negatif_test = negatif_image(test);
-	Point p3 = trouver_pixel_depart(negatif_test,1,1);
+	Point p3 = trouver_pixel_depart(negatif_test);
 	afficher_resultat_test(p3.x == 1 && p3.y == 1);
 }
 void test_recherche_contour(){
@@ -49,7 +49,7 @@ void test_recherche_contour(){
 	// On va verifier que la liste des points pour l'image contour_simple.pbm est la bonne
 	printf("Sur l'image : contour_simple.pbm\n");
 	Image contour_simple = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
-	Point p = trouver_pixel_depart(contour_simple,1,1);
+	Point p = trouver_pixel_depart(contour_simple);
 	Contour Cont = recherche_contour(p,contour_simple);
 	print_liste_Point(Cont);
 
@@ -57,7 +57,7 @@ void test_recherche_contour(){
 	// On va verifier que la liste des points pour l'image contour_tres_simple.pbm est la bonne
 	printf("Sur l'image : contour_tres_simple.pbm\n");
 	Image contour_tres_simple = lire_fichier_image("../IMAGES_TEST/contour_tres_simple.pbm");
-	Point p2 = trouver_pixel_depart(contour_tres_simple,1,1);
+	Point p2 = trouver_pixel_depart(contour_tres_simple);
 	Contour Cont2 = recherche_contour(p2,contour_tres_simple);
 	print_liste_Point(Cont2);
 
@@ -65,7 +65,7 @@ void test_recherche_contour(){
 	// On va verifier que la liste des points pour l'image .pbm est la bonne
 	printf("Sur l'image : contour_tres_tres_simple.pbm\n");
 	Image contour_tres_tres_simple = lire_fichier_image("../IMAGES_TEST/contour_tres_tres_simple.pbm");
-	Point p3 = trouver_pixel_depart(contour_tres_tres_simple,1,1);
+	Point p3 = trouver_pixel_depart(contour_tres_tres_simple);
 	Contour Cont3 = recherche_contour(p3,contour_tres_tres_simple);
 	print_liste_Point(Cont3);
 
@@ -73,7 +73,7 @@ void test_recherche_contour(){
 	// On va verifier que la liste des points pour l'image .pbm est la bonne
 	printf("Sur l'image : contour_dur.pbm\n");
 	Image contour_dur = lire_fichier_image("../IMAGES_TEST/contour_dur.pbm");
-	Point p4 = trouver_pixel_depart(contour_dur,1,1);
+	Point p4 = trouver_pixel_depart(contour_dur);
 	Contour Cont4 = recherche_contour(p4,contour_dur);
 	print_liste_Point(Cont4);    
 }
@@ -105,7 +105,7 @@ int generation_resultats_tache3(){
 	    Image img = lire_fichier_image(name); 
 	    L = largeur_image(img);
 	    H = hauteur_image(img);
-	    CT = recherche_contour(trouver_pixel_depart(img,1,1),img);
+	    CT = recherche_contour(trouver_pixel_depart(img),img);
 	    nb_segments = nombre_segments(CT);
 	    fprintf(f,"%s: L=%d H=%d, nb_segment=%d\n",de->d_name,L,H,nb_segments);
 	}

@@ -9,11 +9,11 @@
 #include "sequence_point.h"
 #include "contour.h"
 
-Point trouver_pixel_depart(Image I, int i, int j){
-	UINT h_img = hauteur_image(I)+1;
-	UINT l_img = largeur_image(I)+1;
-	for (double i; i<h_img;i++){
-		for(double j; j<l_img;j++){
+Point trouver_pixel_depart(Image I){
+	int h_img = hauteur_image(I)+1;
+	int l_img = largeur_image(I)+1;
+	for (double i=1; i<h_img;i++){
+		for(double j=1; j<l_img;j++){
 			if (get_pixel_image(I,i,j)){
 				if (!get_pixel_image(I,i,j-1)){
 					Point p = nouveau_point(i,j);
