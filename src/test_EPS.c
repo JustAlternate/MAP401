@@ -93,7 +93,7 @@ void tout_faire(char *nom, int style, char* chemin_fichier){
     printf("%s\n", nom2);
     strcat(nom_pbm, ".pbm");
     Image contour_simple = lire_fichier_image(nom_pbm);
-    Point p = trouver_pixel_depart(contour_simple);
+    Point p = trouver_pixel_depart(contour_simple,1,1);
     Contour Cont = recherche_contour(p,contour_simple);
     FILE* f = init_fichier_eps(nom2,0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
     dessiner_contour(Cont,f,0,0,0,1.,hauteur_image(contour_simple));
@@ -139,7 +139,7 @@ void test_dessiner_contour(){
     printf("Test 1/2\n");
     printf("%sA VERIFIER SOI-MEME%s\n", ANSI_COLOR_ORANGE, RESET_COLOR);
     Image contour_simple = lire_fichier_image("../IMAGES_TEST/contour_simple.pbm");
-    Point p = trouver_pixel_depart(contour_simple);
+    Point p = trouver_pixel_depart(contour_simple,1,1);
     Contour Cont = recherche_contour(p,contour_simple);
     FILE* f = init_fichier_eps("test_EPS4",0,0,largeur_image(contour_simple),hauteur_image(contour_simple));
     dessiner_contour(Cont,f,0,0,0,1.,hauteur_image(contour_simple));

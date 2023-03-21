@@ -11,7 +11,7 @@
 
 typedef enum {Nord,Sud,Ouest,Est} Orientation;
 
-Point trouver_pixel_depart(Image I);
+Point trouver_pixel_depart(Image I, int i, int j);
 
 Point avancer(Point pos, Orientation ori);
 Orientation nouvelle_orientation(Point pos, Orientation ori, Image I);
