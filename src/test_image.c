@@ -411,5 +411,5 @@ int test_creer_masque_image(){
 	printf("%sla fonction negatif_image() est fonctionnelle.%s\n",ANSI_COLOR_GREEN,RESET_COLOR);
     }
     test_creer_masque_image();
-    return 1;
+    return 0;
     }

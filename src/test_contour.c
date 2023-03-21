@@ -170,4 +170,5 @@ int main(int argc, char** argv){
 	generation_resultats_tache3();
 	generation_resultats_tache5();
 	test_recherche_tous_les_contours();
+	return 0;
 }
