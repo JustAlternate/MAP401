@@ -76,12 +76,12 @@ void generation_resultats_tache6(){
 		printf("impossible d'ouvrire le fichier de sortie des resultats de tache 6, arrêt.`=\n");
 		return;
 	}
-    _ecrire_resultat_fichier_tache6(f, "image_poly_tache6.pbm");
-    _ecrire_resultat_fichier_tache6(f, "elephant-gotlib.pbm");
-    _ecrire_resultat_fichier_tache6(f, "goudyini-A.pbm");
-    _ecrire_resultat_fichier_tache6(f, "JoaquimHock-LesArbres.pbm");
-    _ecrire_resultat_fichier_tache6(f, "cheval.pbm");
-    _ecrire_resultat_fichier_tache6(f, "papillon2.pbm");
+    _ecrire_resultat_fichier_tache6(f, "../IMAGES_TEST/image_poly_tache6.pbm");
+    _ecrire_resultat_fichier_tache6(f, "../IMAGES_TEST/elephant-gotlib.pbm");
+    _ecrire_resultat_fichier_tache6(f, "../IMAGES_TEST/goudyini-A.pbm");
+    _ecrire_resultat_fichier_tache6(f, "../IMAGES_TEST/JoaquimHock-LesArbres.pbm");
+    _ecrire_resultat_fichier_tache6(f, "../IMAGES_TEST/cheval.pbm");
+    _ecrire_resultat_fichier_tache6(f, "../IMAGES_TEST/papillon2.pbm");
     fclose(f);
 }
 
