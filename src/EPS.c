@@ -59,3 +59,24 @@ void dessiner_contour(Contour CT, FILE* f, bool r, bool g, bool b, float width, 
 	}
 	fprintf(f,"\n%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
 }
+
+
+void enregistrer_liste_contour_vers_EPS(Liste_Contour* LC, char* nom_fichier, int style, int largeur_img, int hauteur_img){
+	/*
+	style = 0: stroke
+	style = 1: fill
+	*/
+    FILE* f = init_fichier_eps(nom_fichier,0,0,largeur_img,hauteur_img);
+    Cellule_Contour *cell_cont = LC->first;
+    while (cell_cont != NULL){
+        dessiner_contour(cell_cont->val,f,0,0,0,1.,hauteur_img);
+        cell_cont = cell_cont->suiv;
+    }
+	if (style){
+		fprintf(f,"fill\n");
+	}else{
+		fprintf(f,"stroke\n");
+	}
+    fprintf(f,"showpage");
+    fclose(f);
+}

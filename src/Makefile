@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment
+EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment simplifier_segment
 
 
 #############################################################################
@@ -129,11 +129,32 @@ test_EPS.o : test_EPS.c EPS.h contour.h
 	$(CC) -c $(COMPILOPTS) $<	
 
 
+test_simplification_contour.o : test_simplification_contour.c image.h contour.h geometrie.h types_macros.h sequence_point.h simplification_contour.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_simplification_contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
+
 
 distance_point_segment.o: distance_point_segment.c geometrie.h types_macros.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module distance_point_segment"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
+
+simplification_contour.o: simplification_contour.c simplification_contour.h geometrie.h contour.h types_macros.h sequence_point.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module simplification_contour"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
+
+simplifier_segment.o: simplifier_segment.c image.h contour.h simplification_contour.h sequence_point.h EPS.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module simplifier_segment"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<	
 
@@ -155,7 +176,7 @@ test_geometrie : test_geometrie.o geometrie.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 
-test_simplification_contour: test_simplification_contour.o geometrie.o 
+test_simplification_contour: test_simplification_contour.o geometrie.o image.o contour.o sequence_point.o simplification_contour.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
@@ -178,6 +199,13 @@ test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 distance_point_segment : distance_point_segment.o geometrie.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+simplifier_segment : simplifier_segment.o image.o contour.o simplification_contour.o sequence_point.o EPS.o geometrie.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

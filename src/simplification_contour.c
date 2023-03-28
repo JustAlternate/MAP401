@@ -45,3 +45,14 @@ Contour enrobage_douglas(Contour Cont, int d){
 	L = concatener_liste_Point(petit_L, L);
 	return L;
 }
+
+
+Liste_Contour *simplification_segment(Liste_Contour* LCont, int d){
+	Cellule_Contour* cur = LCont->first;
+	Liste_Contour* LContS = creer_liste_Contour();
+	while (cur != NULL){
+		ajouter_element_liste_Contour(LContS, enrobage_douglas(cur->val, d));
+		cur = cur->suiv;
+	}
+	return LContS;
+}
