@@ -15,7 +15,7 @@ Pour générer les executables et lancer tout les tests :
 3) faites **make tests**
 4) Aller dans le dossier RESULTATS pour regarder que tout a bien était générée correctement.
 
-Cette branche est actuellement à jour avec la branche tache5.
+Cette branche est actuellement à jour avec la branche tache6.
 
 Pour trouver une tache précisement changer de branche.
 
