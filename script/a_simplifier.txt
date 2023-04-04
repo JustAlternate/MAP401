@@ -1,0 +1,6 @@
+image-poly-tache6.pbm
+elephant-gotlib.pbm
+goudyini-A.pbm
+JoaquimHock-LesArbres.pbm
+cheval.pbm
+papillon2.pbm
