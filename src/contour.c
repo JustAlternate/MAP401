@@ -10,8 +10,10 @@
 #include "contour.h"
 
 Point trouver_pixel_depart(Image I){
-	for (double i = 1; i<hauteur_image(I)+1;i++){
-		for(double j = 1; j<largeur_image(I)+1;j++){
+	int h_img = hauteur_image(I)+1;
+	int l_img = largeur_image(I)+1;
+	for (double i=1; i<h_img;i++){
+		for(double j=1; j<l_img;j++){
 			if (get_pixel_image(I,i,j)){
 				if (!get_pixel_image(I,i,j-1)){
 					Point p = nouveau_point(i,j);
@@ -129,8 +131,7 @@ void qui_save_dans_un_fichier(char *name, Liste_Point LC){
 	fprintf(f, "1\n\n");
 	fprintf(f,"%d",nombre_segments(LC));
 	Cellule_Point *cur = LC.first;
-	while (cur!=NULL)
-	{
+	while (cur!=NULL){
 		fprintf(f, "%f %f", cur->val.x, cur->val.y);
 	}
 	fclose(f);
@@ -138,8 +139,9 @@ void qui_save_dans_un_fichier(char *name, Liste_Point LC){
 
 void sauveguarde_LC_contour(char *name, Liste_Contour LC){ 
 	// sauvegarde dans un fichier la liste chainée de contour 
-	//la fonction qui_save_dans_un_fichier ne sauvegarde que un coutour et non une liste de contour
-	FILE *f = fopen(name, "w");	if (f == NULL){
+	// la fonction qui_save_dans_un_fichier ne sauvegarde que un coutour et non une liste de contour
+	FILE *f = fopen(name, "w");
+	if (f == NULL){
 		printf("erreur: overture du fichier impossible");
 		return;
 	}

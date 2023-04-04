@@ -78,7 +78,39 @@ Point addition_point(Point p1, Point p2){
 Point produit_point(double λ, Point p){
     return nouveau_point(λ * p.x, λ * p.y);
 }
-//renvoie la distance en =tre le point p1 et p2
+
+Point negation_point(Point p){
+    return nouveau_point(-1 * p.x, -1 * p.y);
+}
+
+//renvoie la distance entre le point p1 et p2
 double distance_point(Point p1, Point p2){
     return norme(couple_point_to_vecteur(p1, p2));
+}
+
+// CETTE FONCTION EST TESTER DANS LE FICHIER test_simplification_contour.c
+double distance_point_segment(Point P, Point A, Point B){
+	if (A.x == B.x && A.y == B.y){
+		return distance_point(A,P);
+	}
+	// On est dans le cas A =/= B :
+	
+	// On commence par calculer lambda
+	double lambda = produit_scalaire(couple_point_to_vecteur(A,P),couple_point_to_vecteur(A,B))/produit_scalaire(couple_point_to_vecteur(A,B),couple_point_to_vecteur(A,B));
+
+	// Cas lambda < 0 :
+	if (lambda < 0){
+		return distance_point(A,P);
+	}
+
+	// Cas lambda > 1 :
+	if (lambda > 1){
+		return distance_point(B,P);
+	}
+
+	// Dernier cas 0 <= lambda <= 1 :
+	// On calcule le point Q :
+    Point Q = addition_point(A, produit_point(lambda, addition_point(B, negation_point(A))));
+    //Point Q = nouveau_point(A.x + lambda * (B.x - A.x), A.y * lambda * (B.y - A.y));
+    return distance_point(Q,P);
 }

@@ -171,7 +171,17 @@ void test_dessiner_contour_CR_TACHE5_PARTIE2(){
     tout_faire_TACHE5("image2_poly",1,"../IMAGES_TACHE5/");
     tout_faire_TACHE5("FranceRegions",1,"../IMAGES_TACHE5/");
     tout_faire_TACHE5("Droopy_Wolf",1,"../IMAGES_TACHE5/");
+}
 
+
+void test_dessiner_contour_et_remplissage_CR_TACHE6_partie2(){/*
+    printf("Exportation des images du CR TACHE6_2\n");
+    tout_faire_TACHE6("image_poly_tache6",0,"../IMAGES_TEST/");
+    tout_faire_TACHE6("JoaquimHock-LesArbres",0,"../IMAGES_TEST/");
+    tout_faire_TACHE6("cheval",0,"../IMAGES_TEST/");
+    tout_faire_TACHE6("elephant-gotlib",0,"../IMAGES_TEST/");
+    tout_faire_TACHE6("goudyini-A",0,"../IMAGES_TEST/");
+    tout_faire_TACHE6("papillon2",0,"../IMAGES_TEST/");*/
 }
 
 
@@ -180,5 +190,6 @@ int main(int argc, char** argv){
     test_dessiner_ligne();
     test_dessiner_contour();
     test_dessiner_contour_CR_TACHE5_PARTIE2();
+    test_dessiner_contour_et_remplissage_CR_TACHE6_partie2();
     return 0;
 }
