@@ -84,7 +84,6 @@ geometrie.o : geometrie.c geometrie.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-
 test_geometrie.o : test_geometrie.c geometrie.h
 	@echo ""
 	@echo "---------------------------------------------"
@@ -158,13 +157,6 @@ simplifier_segment.o: simplifier_segment.c image.h contour.h simplification_cont
 	@echo "Compilation du module simplifier_segment"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<	
-
-bezier.o : bezier.c bezier.h geometrie.h sequence_point.h
-	@echo ""
-	@echo "---------------------------------------------"
-	@echo "Compilation du module bezier"
-	@echo "---------------------------------------------"
-	$(CC) -c $(COMPILOPTS) $<
 
 ########################################################
 # regles explicites de creation des executables
