@@ -25,8 +25,8 @@ Contour simplification_douglas_peucker(Cellule_Point* Pj1, Cellule_Point* Pj2, i
 	}
 
 	Contour L;
+	L = creer_liste_Point();
 	if (dmax <= d){
-		L = creer_liste_Point();
 		ajouter_element_liste_Point(&L,Pj2->val);
 	}
 	else{
