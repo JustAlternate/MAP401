@@ -93,7 +93,7 @@ int nombre_points(Liste_Point L){
 }
 int nombre_segments(Liste_Point L){
 	//nombre de segments dans le contour L
-	int nb = -1;//il y a un point de plus que de segments
+	int nb = 0;
 	Cellule_Point* cur = L.first;
 	while(cur!=NULL){
 		nb++;
