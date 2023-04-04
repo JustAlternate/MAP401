@@ -3,7 +3,6 @@
 
 #include "geometrie.h"
 
-
 typedef struct Cellule_Point_{
 	Point val;    /* donn�e de l'�l�ment de liste */
 	struct Cellule_Point_* suiv; /* pointeur sur l'�l�ment suivant */
