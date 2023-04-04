@@ -158,6 +158,14 @@ simplifier_segment.o: simplifier_segment.c image.h contour.h simplification_cont
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<	
 
+
+bezier.o : bezier.c sequence_point.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module bezier"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
 ########################################################
 # regles explicites de creation des executables
 
