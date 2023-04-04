@@ -10,9 +10,9 @@ Contour simplification_douglas_peucker(Cellule_Point* Pj1, Cellule_Point* Pj2, i
 	Cellule_Point* Pk = Pj1;
 	Cellule_Point* Pj = Pj1->suiv;
 
-	int dmax = 0;
+	double dmax = 0;
 	double dj;
-	while (Pj != Pj2->suiv){
+	while (Pj != Pj2){
 
 		dj = distance_point_segment(Pj->val,Pj1->val,Pj2->val);
 
@@ -24,9 +24,14 @@ Contour simplification_douglas_peucker(Cellule_Point* Pj1, Cellule_Point* Pj2, i
 		Pj = Pj->suiv;
 	}
 
+<<<<<<< HEAD
 	Contour L;
 	L = creer_liste_Point();
 	if (dmax <= d){
+=======
+	Contour L = creer_liste_Point();
+	if (dmax <= (double) d){
+>>>>>>> main
 		ajouter_element_liste_Point(&L,Pj2->val);
 	}
 	else{
