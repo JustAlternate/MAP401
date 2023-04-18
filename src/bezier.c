@@ -36,7 +36,7 @@ Point applique_bezier2_point(Bezier2 bez, double x){
 
 Point applique_bezier3_point(Bezier3 bez, double x){
     // On recopie simplement la formule de la forme d'une courbe de bezier.
-    Point a = produit_point((x - 1)*(x - 1)*(x-1), bez.C0);
+    Point a = produit_point((x - 1)*(x - 1)*(x - 1), bez.C0);
     Point b = produit_point(3*(x - 1)*(x - 1)*(x), bez.C1);
     Point c = produit_point(3*(x - 1)*(x)*(x), bez.C2);
     Point d = produit_point((x)*(x)*(x), bez.C3);
@@ -55,25 +55,27 @@ double distance_point_courbe_bezier2(Point P, Bezier2 bez, double ti){
     return distance_point(P,applique_bezier2_point(bez, ti));
 }
 
-Bezier2 contour_vers_bezier2(Cellule_Point *depart, Cellule_Point* fin, int n){
-    if (n==1){
-	Bezier2 bez = init_bezier2(depart->val, produit_point(0.5, addition_point(depart->val, fin->val)), fin->val); 
+Bezier2 aprox_bezier2(Cellule_Point *depart, Cellule_Point* fin, int n){
+    Bezier2 bez;
+    if (n == 1){
+        bez = init_bezier2(depart->val, produit_point(0.5, addition_point(depart->val, fin->val)), fin->val);
     }
-    else{
-	double n_double = (double)n;
-	double a = (n_double*3)/(n_double* n_double -1);
-	double b = (1-(2*n_double))/(2*(n_double + 1));
-    
-	Cellule_Point* cur = depart->suiv;
-	Point C1 = nouveau_point(0, 0);
-	while (cur != fin){
-	    C1 = addition_point(cur->val, C1);
-	}
-	C1 = produit_point(a, C1);
-	C1 = addition_point(C1, produit_point(b, addition_point(depart->val, fin->val)));
+    else{ // n >= 2
+        double n_double = (double)n;
+        double a = (n_double*3)/(n_double* n_double -1); // alpha α
+        double b = (1-(2*n_double))/(2*(n_double + 1)); // beta β
+        
+        Cellule_Point* cur = depart->suiv;
+        Point C1 = nouveau_point(0, 0);
+        while (cur != fin){ //somme P_i+j1
+            C1 = addition_point(cur->val, C1);
+        }
+        C1 = produit_point(a, C1);
+        C1 = addition_point(C1, produit_point(b, addition_point(depart->val, fin->val)));
 
-	return init_bezier2(depart->val, C1, fin->val);
+        bez = init_bezier2(depart->val, C1, fin->val);
     }
+    return bez;
 }
 
 
