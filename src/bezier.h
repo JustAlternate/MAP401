@@ -43,4 +43,5 @@ Point applique_bezier2_point(Bezier2 bez, double x);
 // Applique la fonction, avec x un point entre 0 et 1.
 Point applique_bezier3_point(Bezier3 bez, double x);
 
+
 #endif
