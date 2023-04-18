@@ -22,26 +22,25 @@ void afficher_resultat_test(int b){
 void test_approx_bezier2(){
     
     // On va verifier que la fonction donne les meme valeurs que dans l'exemple page 50.
-    printf("Fonction approx_bezier2()");
-    printf("Test 1");
+    printf("Fonction approx_bezier2()\n");
+    printf("Test 1\n");
 
-    Liste_Point* LP = NULL;
-    LP->taille = 9;
-    ajouter_element_liste_Point(LP, nouveau_point(0,0));
-    ajouter_element_liste_Point(LP, nouveau_point(1,0));
-    ajouter_element_liste_Point(LP, nouveau_point(1,1));
-    ajouter_element_liste_Point(LP, nouveau_point(1,2));
-    ajouter_element_liste_Point(LP, nouveau_point(2,2));
-    ajouter_element_liste_Point(LP, nouveau_point(3,2));
-    ajouter_element_liste_Point(LP, nouveau_point(3,3));
-    ajouter_element_liste_Point(LP, nouveau_point(4,3));
-    ajouter_element_liste_Point(LP, nouveau_point(5,3));
+    Liste_Point LP = creer_liste_Point();
+    ajouter_element_liste_Point(&LP, nouveau_point(0,0));
+    ajouter_element_liste_Point(&LP, nouveau_point(1,0));
+    ajouter_element_liste_Point(&LP, nouveau_point(1,1));
+    ajouter_element_liste_Point(&LP, nouveau_point(1,2));
+    ajouter_element_liste_Point(&LP, nouveau_point(2,2));
+    ajouter_element_liste_Point(&LP, nouveau_point(3,2));
+    ajouter_element_liste_Point(&LP, nouveau_point(3,3));
+    ajouter_element_liste_Point(&LP, nouveau_point(4,3));
+    ajouter_element_liste_Point(&LP, nouveau_point(5,3));
 
-    Bezier2 bez = approx_bezier2(LP->first, LP->last, LP->taille-1);
+    Bezier2 bez = approx_bezier2(LP.first, LP.last, LP.taille-1);
     
-    printf("C0 : (%lf.%lf)",bez.C0.x, bez.C0.y); 
-    printf("C1 : (%lf.%lf)",bez.C1.x, bez.C1.y); 
-    printf("C2 : (%lf.%lf)",bez.C2.x, bez.C2.y); 
+    printf("C0 : (%lf.%lf)\n",bez.C0.x, bez.C0.y); 
+    printf("C1 : (%lf.%lf)\n",bez.C1.x, bez.C1.y); 
+    printf("C2 : (%lf.%lf)\n",bez.C2.x, bez.C2.y); 
     
 }
 

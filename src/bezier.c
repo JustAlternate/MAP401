@@ -69,6 +69,7 @@ Bezier2 approx_bezier2(Cellule_Point *depart, Cellule_Point* fin, int n){
         Point C1 = nouveau_point(0, 0);
         while (cur != fin){ //somme P_i+j1
             C1 = addition_point(cur->val, C1);
+            cur = cur->suiv;
         }
         C1 = produit_point(a, C1);
         C1 = addition_point(C1, produit_point(b, addition_point(depart->val, fin->val)));
