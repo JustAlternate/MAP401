@@ -91,7 +91,7 @@ test_geometrie.o : test_geometrie.c geometrie.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-sequence_point.o : sequence_point.c sequence_point.h geometrie.h
+sequence_point.o : sequence_point.c sequence_point.h geometrie.h bezier.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module sequence_point"
@@ -167,7 +167,15 @@ bezier.o : bezier.c sequence_point.h
 	$(CC) -c $(COMPILOPTS) $<
 
 
-test_bezier.o : test_bezier.c bezier.h geometrie.h types_macros.h sequence_point.h
+simplification_bezier2.o : simplification_bezier2.c coutour.h sequence_point.h geometrie.h bezier.h types_macros.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module simplification_bezier2"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+
+test_bezier.o : test_bezier.c bezier.h simplification_bezier2.h geometrie.h types_macros.h sequence_point.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module test_bezier"
@@ -193,7 +201,7 @@ test_geometrie : test_geometrie.o geometrie.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 
-test_simplification_contour: test_simplification_contour.o geometrie.o image.o contour.o sequence_point.o simplification_contour.o
+test_simplification_contour: test_simplification_contour.o geometrie.o image.o contour.o sequence_point.o simplification_contour.o bezier.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
@@ -201,14 +209,14 @@ test_simplification_contour: test_simplification_contour.o geometrie.o image.o c
 	$(CC) $^ $(LDOPTS) -o $@
 
 
-test_contour : test_contour.o contour.o sequence_point.o geometrie.o image.o
+test_contour : test_contour.o contour.o sequence_point.o geometrie.o image.o bezier.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o
+test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o bezier.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
@@ -222,7 +230,7 @@ distance_point_segment : distance_point_segment.o geometrie.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-simplifier_segment : simplifier_segment.o image.o contour.o simplification_contour.o sequence_point.o EPS.o geometrie.o
+simplifier_segment : simplifier_segment.o image.o contour.o simplification_contour.o sequence_point.o EPS.o geometrie.o bezier.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

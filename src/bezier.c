@@ -28,17 +28,17 @@ Bezier3 init_bezier3(Point C0, Point C1, Point C2, Point C3){
 
 Point applique_bezier2_point(Bezier2 bez, double x){
     // On recopie simplement la formule de la forme d'une courbe de bezier.
-    Point a = produit_point((x - 1)*(x - 1), bez.C0);
-    Point b = produit_point(2*(x - 1)*(x), bez.C1);
+    Point a = produit_point((1-x)*(1 - x), bez.C0);
+    Point b = produit_point(2*(1-x)*(x), bez.C1);
     Point c = produit_point((x)*(x), bez.C2);
     return addition_point(addition_point(a,b),c);
 }
 
 Point applique_bezier3_point(Bezier3 bez, double x){
     // On recopie simplement la formule de la forme d'une courbe de bezier.
-    Point a = produit_point((x - 1)*(x - 1)*(x - 1), bez.C0);
-    Point b = produit_point(3*(x - 1)*(x - 1)*(x), bez.C1);
-    Point c = produit_point(3*(x - 1)*(x)*(x), bez.C2);
+    Point a = produit_point((1-x)*(1-x)*(1-x), bez.C0);
+    Point b = produit_point(3*(1-x)*(1-x)*(x), bez.C1);
+    Point c = produit_point(3*(1-x)*(x)*(x), bez.C2);
     Point d = produit_point((x)*(x)*(x), bez.C3);
     return addition_point(addition_point(a,b),addition_point(c,d));
 }
@@ -52,9 +52,9 @@ Bezier3 elevation_de_deg_bezier(Bezier2 bez){
 }
 
 double distance_point_courbe_bezier2(Point P, Bezier2 bez, double ti){
+    // P le point , bez la courbe de bezier 2
     return distance_point(P,applique_bezier2_point(bez, ti));
 }
-
 
 
 
