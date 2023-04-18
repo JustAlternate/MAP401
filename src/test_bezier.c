@@ -19,8 +19,20 @@ void afficher_resultat_test(int b){
     }
 }
 
-void test_approx_bezier2(){
-    
+void test_distance_point_bezier2(){
+    Bezier2 bez = init_bezier2(nouveau_point(0,0),nouveau_point(1.547619,2.452381),nouveau_point(5,3));
+
+    // Les points sur lequels on va tester la fonction distance_point_courbe_bezier2
+    Point tab[] = {nouveau_point(0,0),nouveau_point(1,0),nouveau_point(1,1),nouveau_point(1,2),
+                  nouveau_point(2,2),nouveau_point(3,2),nouveau_point(3,3),nouveau_point(4,3),
+                  nouveau_point(5,3)};
+
+    for (int i = 0; i < 9; i++){
+        printf("Distance : %lf \n", distance_point_courbe_bezier2(tab[i], bez, 1));
+    }
+}
+
+void test_approx_bezier2(){    
     // On va verifier que la fonction donne les meme valeurs que dans l'exemple page 50.
     printf("Fonction approx_bezier2()\n");
     printf("Test 1\n");
