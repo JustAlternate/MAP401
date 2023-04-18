@@ -55,7 +55,7 @@ double distance_point_courbe_bezier2(Point P, Bezier2 bez, double ti){
     return distance_point(P,applique_bezier2_point(bez, ti));
 }
 
-Bezier2 aprox_bezier2(Cellule_Point *depart, Cellule_Point* fin, int n){
+Bezier2 approx_bezier2(Cellule_Point *depart, Cellule_Point* fin, int n){
     Bezier2 bez;
     if (n == 1){
         bez = init_bezier2(depart->val, produit_point(0.5, addition_point(depart->val, fin->val)), fin->val);

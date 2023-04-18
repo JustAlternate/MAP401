@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment simplifier_segment
+EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment simplifier_segment test_bezier
 
 
 #############################################################################
@@ -166,6 +166,15 @@ bezier.o : bezier.c sequence_point.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
+
+test_bezier.o : test_bezier.c bezier.h geometrie.h types_macros.h sequence_point.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module test_bezier"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<	
+
+
 ########################################################
 # regles explicites de creation des executables
 
@@ -220,6 +229,14 @@ simplifier_segment : simplifier_segment.o image.o contour.o simplification_conto
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
+
+test_bezier : test_bezier.o bezier.o geometrie.o sequence_point.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
 tests:
 	@echo "---------------------------------------------"
 	@echo "Lancement du make all"
@@ -246,6 +263,11 @@ tests:
 	@echo "---------------------------------------------"
 	@sleep 5
 	./test_EPS
+	@echo "---------------------------------------------"
+	@echo "Lancement test_bezier"
+	@echo "---------------------------------------------"
+	@sleep 5
+	./test_bezier
 	@echo "--------------------------"
 	@echo "make tests a bien réussi !"
 
