@@ -2,7 +2,6 @@
 #define _SEQUENCE_POINT_H_
 
 #include "geometrie.h"
-#include "bezier.h"
 
 
 typedef struct Cellule_Point_{
@@ -28,16 +27,6 @@ typedef struct{
 	Cellule_Contour *last;  /* pointeur sur le dernier �l�ment de la liste */
 } Liste_Contour;
 
-typedef struct Cellule_Bezier2_{
-	Bezier2 val;    /* donn�e de l'�l�ment de liste */
-	struct Cellule_Bezier2_* suiv; /* pointeur sur l'�l�ment suivant */
-} Cellule_Bezier2;
-
-typedef struct Liste_Bezier2_{
-	unsigned int taille;        /* nombre d'�l�ments dans la liste */
-	Cellule_Bezier2 *first; /* pointeur sur le premier �l�ment de la liste */
-	Cellule_Bezier2 *last;  /* pointeur sur le dernier �l�ment de la liste */
-} Liste_Bezier2;
 
 // Tout ce qui relate des points
 Liste_Point creer_liste_Point();
@@ -60,12 +49,4 @@ int nombre_Contour(Liste_Contour L);
 int nombre_points_Liste_Contour(Liste_Contour L);
 int nombre_segments_Liste_Contour(Liste_Contour L);
 
-//tout ce que relate des litdes de bezier2
-Liste_Bezier2* creer_liste_Bezier2();
-Cellule_Bezier2 *creer_element_liste_Bezier2(Bezier2 v);
-void ajouter_element_liste_Bezier2(Liste_Bezier2* L, Bezier2 e);
-Liste_Bezier2 supprimer_liste_Bezier2(Liste_Bezier2 L);
-Liste_Bezier2 concatener_liste_Bezier2(Liste_Bezier2 L1, Liste_Bezier2 L2);
-void print_liste_Bezier2(Liste_Bezier2 *l);
-int nombre_Bezier2(Liste_Bezier2 L);
 #endif

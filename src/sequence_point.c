@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include "sequence_point.h"
 #include "geometrie.h"
-#include "bezier.h"
 
 Liste_Point creer_liste_Point()
 {
@@ -214,98 +213,3 @@ int nombre_segments_Liste_Contour(Liste_Contour L){
 	return nb;
 }
 
-
-
-
-//######################//
-//		Bezier2			//
-//######################//
-
-Liste_Bezier2* creer_liste_Bezier2(){
-	Liste_Bezier2 *L = malloc(sizeof(Liste_Bezier2));
-	L->taille = 0;
-	L->first = NULL;
-	L->last = NULL; 
-	return L;
-}
-Cellule_Bezier2 *creer_element_liste_Bezier2(Bezier2 v)
-{
-	Cellule_Bezier2 *el;
-	el = (Cellule_Bezier2 *)malloc(sizeof(Cellule_Bezier2));
-	if (el==NULL)
-	{
-		fprintf(stderr, "creer_element_liste_Bezier2: allocation impossible\n");
-		exit(-1);
-	}
-	el->val = v;
-	el->suiv = NULL;
-	return el;
-}
-
-void ajouter_element_liste_Bezier2(Liste_Bezier2 *L, Bezier2 e)
-{
-	Cellule_Bezier2 *el;
-
-	el = creer_element_liste_Bezier2(e);
-	if (L->taille == 0)
-	{
-		/* premier �l�ment de la liste */
-		L->first = el;
-		L->last = el;
-	}
-	else
-	{
-		L->last->suiv = el;
-		L->last = el;
-	}
-	L->taille++;
-}
-Liste_Bezier2 supprimer_liste_Bezier2(Liste_Bezier2 L)
-{
-	Cellule_Bezier2 *el=L.first;
-	
-	while (el) 
-	{		
-		Cellule_Bezier2 *suiv=el->suiv;
-		free(el);
-		el = suiv;
-	}
-	L.first = L.last = NULL; L.taille = 0;
-	return L;
-}
-
-/* concat�ne L2 � la suite de L1, renvoie la liste L1 modifi�e */
-Liste_Bezier2 concatener_liste_Bezier2(Liste_Bezier2 L1, Liste_Bezier2 L2)
-{
-	/* cas o� l'une des deux listes est vide */
-	if (L1.taille == 0) return L2; 
-	if (L2.taille == 0) return L1;
-	
-	/* les deux listes sont non vides */
-	L1.last->suiv = L2.first; /* lien entre L1.last et L2.first */
-	L1.last = L2.last;        /* le dernier �l�ment de L1 est celui de L2 */
-	L1.taille += L2.taille;   /* nouvelle taille pour L1 */
-	return L1;
-}
-
-void print_liste_Bezier2(Liste_Bezier2 *L){
-	printf("{");
-	Cellule_Bezier2* cur = L->first;
-	while(cur!=NULL){
-		print_Bezier2(cur->val);
-		cur = cur->suiv;
-		printf("; ");
-	}
-	printf("}\n");
-}
-
-int nombre_Bezier2(Liste_Bezier2 L){
-	//la somme du nombre de Bezier2s dans la liste chainée de Bezier2 L (on ne s'intéresse pas à ce que contiennent les Bezier2s)
-	int nb = 0;
-	Cellule_Bezier2* cur = L.first;
-	while(cur!=NULL){
-		nb++;
-		cur=cur->suiv;
-	}
-	return nb;
-}

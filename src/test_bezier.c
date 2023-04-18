@@ -4,6 +4,7 @@
 #include "simplification_bezier2.h"
 #include "geometrie.h"
 #include "sequence_point.h"
+#include "sequence_bezier2.h"
 #include "types_macros.h"
 
 #define ANSI_COLOR_RED     "\x1b[31m"

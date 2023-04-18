@@ -6,6 +6,7 @@
 #define _BEZIER_H_
 
 #include "geometrie.h"
+#include "sequence_point.h"
 
 //////////////////////////////////////////////////
 //                  Beziers                    //
