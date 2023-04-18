@@ -6,8 +6,8 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
-#include"geometrie.h"
-
+#include "geometrie.h"
+#include "contour.h"
 
 //////////////////////////////////////////////////
 //                Initialisation                //
@@ -114,3 +114,7 @@ double distance_point_segment(Point P, Point A, Point B){
     //Point Q = nouveau_point(A.x + lambda * (B.x - A.x), A.y * lambda * (B.y - A.y));
     return distance_point(Q,P);
 }
+
+
+
+

@@ -6,7 +6,6 @@
 #define _GEOMETRIE_H_
 
 
-
 typedef struct {
     double x;
     double y;
@@ -62,4 +61,14 @@ double distance_point(Point p1, Point p2);
 //renvoie la distance point segment entre P, A et B
 double distance_point_segment(Point P, Point A, Point B);
 
+
+
+
 #endif
+
+
+
+
+
+
+

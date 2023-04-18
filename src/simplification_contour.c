@@ -17,7 +17,7 @@ Contour simplification_douglas_peucker(Cellule_Point* Pj1, Cellule_Point* Pj2, i
 		dj = distance_point_segment(Pj->val,Pj1->val,Pj2->val);
 
 		if (dmax < dj){
-			dmax = dj;
+			dmax = dj; 
 			Pk = Pj;
 		}
 
