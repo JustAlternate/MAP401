@@ -42,6 +42,8 @@ void test_approx_bezier2(){
     printf("C1 : (%lf.%lf)\n",bez.C1.x, bez.C1.y); 
     printf("C2 : (%lf.%lf)\n",bez.C2.x, bez.C2.y); 
     
+    print_Bezier2(bez);
+    printf("\n");
 }
 
 int main(int argc, char** argv){
