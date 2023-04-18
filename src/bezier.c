@@ -80,3 +80,6 @@ Bezier2 approx_bezier2(Cellule_Point *depart, Cellule_Point* fin, int n){
 }
 
 
+void print_Bezier2(Bezier2 b){
+    printf("B2((%f,%f); (%f,%f); (%f,%f))", b.C0.x, b.C0.y, b.C1.x, b.C1.y, b.C2.x, b.C2.y);
+}
