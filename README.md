@@ -1,4 +1,6 @@
 # MAP401
+Ceci est le projet logiciel de map401 "Vectorisation et simplificatin d'image bitmap"
+Dans ce projet vous retrouverer des simplifications par contour, par courbes de bezier de degrée 2,3 et de la generation d'images PostScript.
 
 # Main
 
