@@ -114,7 +114,7 @@ test_contour.o : test_contour.c contour.h sequence_point.h geometrie.h image.h
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
-EPS.o : EPS.c EPS.h contour.h geometrie.h image.h
+EPS.o : EPS.c EPS.h contour.h geometrie.h image.h bezier.h sequence_bezier2.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module EPS"
@@ -231,7 +231,7 @@ test_contour : test_contour.o contour.o sequence_point.o geometrie.o image.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o
+test_EPS : test_EPS.o EPS.o image.o geometrie.o contour.o sequence_point.o bezier.o sequence_bezier2.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
@@ -245,7 +245,7 @@ distance_point_segment : distance_point_segment.o geometrie.o
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
-simplifier_segment : simplifier_segment.o image.o contour.o simplification_contour.o sequence_point.o EPS.o geometrie.o
+simplifier_segment : simplifier_segment.o image.o contour.o simplification_contour.o sequence_point.o EPS.o geometrie.o bezier.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@

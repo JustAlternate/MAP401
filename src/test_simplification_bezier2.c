@@ -7,12 +7,13 @@
 #include "sequence_point.h"
 #include "sequence_bezier2.h"
 #include "simplification_bezier2.h"
+#include "EPS.h"
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define RESET_COLOR        "\x1B[0m"
 
-//foncyions pratiques:
+//fonctions pratiques:
 void afficher_resultat_test(int b){
     if (b){
         printf("%sSUCCESS%s\n", ANSI_COLOR_GREEN, RESET_COLOR);
@@ -22,17 +23,25 @@ void afficher_resultat_test(int b){
     }
 }
 
-void tester_image(char* nom){
-	Image img = lire_fichier_image(nom);
-	Liste_Contour * LC_cont = recherche_tous_les_contours(img);
+void tester_image(char* nom_entree, char* nom_sortie){
+    Image img = lire_fichier_image(nom_entree);
+    Liste_Contour * LC_cont = recherche_tous_les_contours(img);
     Dessin_Bezier2 *Dessin_d1 = simplification_Bezier2(LC_cont, 1);
     Dessin_Bezier2 *Dessin_d2 = simplification_Bezier2(LC_cont, 2);
     print_Dessin_Bezier2(Dessin_d1);
     print_Dessin_Bezier2(Dessin_d2);
+
+    enregister_dessin_Bezier2_vers_EPS(Dessin_d1, nom_sortie, img.la_largeur_de_l_image, img.la_hauteur_de_l_image);
+    
 }
 
 int main(int argc, char** argv){
-    tester_image("../IMAGES_TEST/caractere2.pbm");
+    tester_image("../IMAGES_TEST/caractere2.pbm", "../RESULTATS/caractere2_douglas_peucker");
+    tester_image("../IMAGES_TEST/arbre.pbm", "../RESULTATS/arbre_douglas_peucker");
+    tester_image("../IMAGES_TEST/animaux.pbm", "../RESULTATS/animaux_douglas_peucker");
+    tester_image("../IMAGES_TEST/Charlot.pbm", "../RESULTATS/Charlot_douglas_peucker");
+    tester_image("../IMAGES_TEST/drowning-girl.pbm", "../RESULTATS/drowning-girl_douglas_peucker");
+    tester_image("../IMAGES_TEST/lettre-L-cursive.pbm", "../RESULTATS/lettre-L-cursive_douglas_peucker");
     /*
     jeu_de_test();
     generation_resultats_tache6();

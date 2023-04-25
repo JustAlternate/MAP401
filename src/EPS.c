@@ -4,6 +4,8 @@
 #include "image.h"
 #include "geometrie.h"
 #include "contour.h"
+#include "bezier.h"
+#include "sequence_bezier2.h"
 
 
 char* name_to_name_eps(char* nom_fichier){
@@ -37,8 +39,6 @@ void dessiner_ligne(FILE* f, int x_dep,int y_dep,int x_fin, int y_fin, bool styl
 	fprintf(f,"%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
 }
 
-
-
 // Faire une fonction qui prend un contour et qui dessine le contour dans un fichier EPS
 void dessiner_contour(Contour CT, FILE* f, bool r, bool g, bool b, float width, int ymax){
 	/*
@@ -49,6 +49,7 @@ void dessiner_contour(Contour CT, FILE* f, bool r, bool g, bool b, float width, 
 	syle: si 0 = stroke, si 1 = fill
 	r,g,b: des booléen pour la couleur, exemple si r=1,b=0,g=0 --> couleur rouge.
 	width: la largeur du trait dessiné en float.
+	ymax: hauteur de l'image
 	*/
 	Cellule_Point* p1 = CT.first;
 	fprintf(f,"%d %d moveto ",(int)p1->val.x,ymax-(int)p1->val.y);
@@ -59,7 +60,6 @@ void dessiner_contour(Contour CT, FILE* f, bool r, bool g, bool b, float width, 
 	}
 	fprintf(f,"\n%d %d %d setrgbcolor %.1f setlinewidth\n",r,g,b,width);
 }
-
 
 void enregistrer_liste_contour_vers_EPS(Liste_Contour* LC, char* nom_fichier, int style, int largeur_img, int hauteur_img){
 	/*
@@ -80,3 +80,35 @@ void enregistrer_liste_contour_vers_EPS(Liste_Contour* LC, char* nom_fichier, in
     fprintf(f,"showpage");
     fclose(f);
 }
+
+// Fonction qui prend un motif (voir explication motif et dessin dans sequence_bezier2) et qui va transformer la courbe de bézier2 en bézier3 et qui ensuite va écrire dans le fichier EPS.
+void dessiner_motif_Bezier2(FILE* f, Motif_Bezier2 *Mot_bez2, int hauteur_img){
+
+	Cellule_Motif_Bezier2 *cell_mot_bez2 = Mot_bez2->first;
+
+	// Avant de boucler, on va faire un premier moveto.
+	
+	fprintf(f,"%f %f moveto\n",cell_mot_bez2->val.C0.x, hauteur_img - cell_mot_bez2->val.C0.y);
+
+	while (cell_mot_bez2 != NULL){
+		Bezier3 bez3 = elevation_de_deg_bezier(cell_mot_bez2->val);
+		// time to draw la bezier 3
+		fprintf(f, "%f %f %f %f %f %f curveto ", bez3.C1.x, hauteur_img - bez3.C1.y, bez3.C2.x, hauteur_img - bez3.C2.y, bez3.C3.x, hauteur_img - bez3.C3.y);
+		cell_mot_bez2 = cell_mot_bez2->suiv;
+	}
+	fprintf(f, "\n");
+}
+
+void enregister_dessin_Bezier2_vers_EPS(Dessin_Bezier2 *des_bez2, char* nom_fichier, int largeur_img, int hauteur_img){
+
+	FILE* f = init_fichier_eps(nom_fichier,0,0,largeur_img,hauteur_img);
+	Cellule_Dessin_Bezier2 *cell_des_bez2 = des_bez2->first;
+	while (cell_des_bez2 != NULL){
+		dessiner_motif_Bezier2(f, &cell_des_bez2->val, hauteur_img);
+		cell_des_bez2 = cell_des_bez2->suiv;
+	}
+	fprintf(f,"fill\n");
+	fprintf(f,"showpage");
+	fclose(f);
+}
+

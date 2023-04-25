@@ -71,8 +71,6 @@ Motif_Bezier2 simplification_douglas_peucker_Bezier2(Cellule_Point* Pj1, Cellule
 	return *L;
 }
 
-
-
 Dessin_Bezier2 *simplification_Bezier2(Liste_Contour* LCont, float d){
 	Cellule_Contour* cur = LCont->first;
 	Dessin_Bezier2* LContS = creer_Dessin_Bezier2();
