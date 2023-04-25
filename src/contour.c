@@ -118,6 +118,7 @@ Contour recherche_contour_et_image_mask(Point depart, Image I, Image mask){
 		}
 	}
 	while(!(pos.x == vrai_Depart.x && pos.y == vrai_Depart.y && ori == Est));
+	ajouter_element_liste_Point(&LC, pos);
 	return LC;
 }
 
