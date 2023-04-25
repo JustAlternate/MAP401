@@ -9,7 +9,7 @@
 
 
 char* name_to_name_eps(char* nom_fichier){
-	char* name = malloc(sizeof(char)*strlen(nom_fichier) + 4);
+	char* name = malloc(sizeof(char)*strlen(nom_fichier) + 5);
 	strcpy(name,nom_fichier);
 	strcat(name,".eps");
 	return name;
@@ -21,6 +21,7 @@ FILE* init_fichier_eps(char* nom_fichier,int xmin, int ymin, int xmax, int ymax)
 	FILE* f = fopen(name,"w");
 	fprintf(f,"\%!PS-Adobe-3.0 EPSF-3.0\n");
 	fprintf(f,"%%%%BoundingBox: %d %d %d %d\n",xmin,ymin,xmax,ymax);
+	free(name);
 	return f;
 }
 

@@ -43,18 +43,16 @@ void ajouter_element_liste_Point(Liste_Point* L, Point e)
 	}
 	L->taille++;
 }
-Liste_Point supprimer_liste_Point(Liste_Point L)
+void supprimer_liste_Point(Liste_Point L)
 {
 	Cellule_Point *el=L.first;
 	
-	while (el) 
+	while (el!=NULL) 
 	{		
 		Cellule_Point *suiv=el->suiv;
 		free(el);
 		el = suiv;
 	}
-	L.first = L.last = NULL; L.taille = 0;
-	return L;
 }
 
 /* concat�ne L2 � la suite de L1, renvoie la liste L1 modifi�e */
@@ -142,19 +140,17 @@ void ajouter_element_liste_Contour(Liste_Contour *L, Contour e)
 	}
 	L->taille++;
 }
-Liste_Contour supprimer_liste_Contour(Liste_Contour L)
+void supprimer_liste_Contour(Liste_Contour L)
 {
 	Cellule_Contour *el=L.first;
 	
-	while (el) 
+	while (el != NULL) 
 	{		
 		Cellule_Contour *suiv=el->suiv;
 		supprimer_liste_Point(el->val);
 		free(el);
 		el = suiv;
 	}
-	L.first = L.last = NULL; L.taille = 0;
-	return L;
 }
 
 /* concat�ne L2 � la suite de L1, renvoie la liste L1 modifi�e */

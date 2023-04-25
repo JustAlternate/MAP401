@@ -303,6 +303,5 @@ tests:
 
 # regle pour "nettoyer" le r�pertoire
 clean:
-	rm -fR $(EXECUTABLES) *.o *.eps ../RESULTATS/*.o.eps ../RESULTATS/*.contours ../RESULTATS/*.contours ../RESULTATS/*.txt
-clear:
-	rm -fR $(EXECUTABLES) *.o *.eps ../RESULTATS/*.o.eps ../RESULTATS/*.contours ../RESULTATS/*.contours ../RESULTATS/*.txt
+	rm -fR $(EXECUTABLES) *.o *.eps ../RESULTATS/*.o.eps ../RESULTATS/*.contours ../RESULTATS/*.contours ../RESULTATS/*.txt ../RESULTATS/*.eps
+clear: clean

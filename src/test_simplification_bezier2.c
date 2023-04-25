@@ -33,6 +33,7 @@ void tester_image(char* nom_entree, char* nom_sortie, int d){
 
     supprimer_Dessin_Bezier2(*Dessin_d1);
     supprimer_liste_Contour(*LC_cont);
+    supprimer_image(&img);
 }
 
 int main(int argc, char** argv){

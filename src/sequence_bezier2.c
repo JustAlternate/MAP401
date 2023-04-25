@@ -51,18 +51,16 @@ void ajouter_element_Motif_Bezier2(Motif_Bezier2 *L, Bezier2 e)
 	}
 	L->taille++;
 }
-Motif_Bezier2 supprimer_Motif_Bezier2(Motif_Bezier2 L)
+void supprimer_Motif_Bezier2(Motif_Bezier2 L)
 {
 	Cellule_Motif_Bezier2 *el=L.first;
 	
-	while (el) 
+	while (el != NULL) 
 	{		
 		Cellule_Motif_Bezier2 *suiv=el->suiv;
 		free(el);
 		el = suiv;
 	}
-	L.first = L.last = NULL; L.taille = 0;
-	return L;
 }
 
 /* concat�ne L2 � la suite de L1, renvoie la liste L1 modifi�e */
@@ -141,18 +139,16 @@ void ajouter_element_Dessin_Bezier2(Dessin_Bezier2 *L, Motif_Bezier2 e)
 	}
 	L->taille++;
 }
-Dessin_Bezier2 supprimer_Dessin_Bezier2(Dessin_Bezier2 L)
+void supprimer_Dessin_Bezier2(Dessin_Bezier2 L)
 {
 	Cellule_Dessin_Bezier2 *el=L.first;
 	
-	while (el) {
+	while (el != NULL) {
 		Cellule_Dessin_Bezier2 *suiv=el->suiv;
 		supprimer_Motif_Bezier2(el->val);
 		free(el);
 		el = suiv;
 	}
-	L.first = L.last = NULL; L.taille = 0;
-	return L;
 }
 
 /* concat�ne L2 � la suite de L1, renvoie la liste L1 modifi�e */
