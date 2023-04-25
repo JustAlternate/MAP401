@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment simplifier_segment test_bezier
+EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment simplifier_segment test_bezier test_simplification_bezier2
 
 
 #############################################################################
@@ -175,7 +175,7 @@ simplification_bezier2.o : simplification_bezier2.c simplification_bezier2.h seq
 	$(CC) -c $(COMPILOPTS) $<
 
 
-test_bezier.o : test_bezier.c bezier.h simplification_bezier2.h geometrie.h types_macros.h sequence_point.h
+test_bezier.o : test_bezier.c bezier.h simplification_bezier2.h geometrie.h types_macros.h sequence_point.h sequence_bezier2.h
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Compilation du module test_bezier"
@@ -188,6 +188,15 @@ sequence_bezier2.o : sequence_bezier2.c sequence_bezier2.h geometrie.h bezier.h
 	@echo "Compilation du module sequence_point"
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
+
+test_simplification_bezier2.o : test_simplification_bezier2.c simplification_bezier2.h image.h contour.h simplification_contour.h sequence_point.h sequence_bezier2.h EPS.h geometrie.h	
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module sequence_point"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
+
 
 ########################################################
 # regles explicites de creation des executables
@@ -237,6 +246,13 @@ distance_point_segment : distance_point_segment.o geometrie.o
 	$(CC) $^ $(LDOPTS) -o $@
 
 simplifier_segment : simplifier_segment.o image.o contour.o simplification_contour.o sequence_point.o EPS.o geometrie.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_simplification_bezier2 : test_simplification_bezier2.o simplification_bezier2.o image.o contour.o simplification_contour.o sequence_point.o sequence_bezier2.o EPS.o geometrie.o bezier.o
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
