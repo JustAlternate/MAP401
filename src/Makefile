@@ -37,7 +37,7 @@ INCLUDEOPTS = -I$(INCDIR)
 COMPILOPTS = -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
-EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment simplifier_segment test_bezier test_simplification_bezier2 faire_simplification_bezier2
+EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment simplifier_segment test_bezier test_simplification_bezier2 faire_simplification_bezier2 test_performance
 
 
 #############################################################################
@@ -203,6 +203,13 @@ faire_simplification_bezier2.o : faire_simplification_bezier2.c simplification_b
 	@echo "---------------------------------------------"
 	$(CC) -c $(COMPILOPTS) $<
 
+test_performance.o : test_performance.c simplification_bezier2.h image.h contour.h simplification_contour.h sequence_point.h sequence_bezier2.h EPS.h geometrie.h
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Compilation du module faire_simplification_bezier2"
+	@echo "---------------------------------------------"
+	$(CC) -c $(COMPILOPTS) $<
+
 
 ########################################################
 # regles explicites de creation des executables
@@ -275,6 +282,13 @@ test_bezier : test_bezier.o bezier.o geometrie.o sequence_point.o sequence_bezie
 	
 
 faire_simplification_bezier2 : faire_simplification_bezier2.o simplification_bezier2.o image.o contour.o simplification_contour.o sequence_point.o sequence_bezier2.o geometrie.o EPS.o bezier.o
+	@echo ""
+	@echo "---------------------------------------------"
+	@echo "Creation de l'executable "$@
+	@echo "---------------------------------------------"
+	$(CC) $^ $(LDOPTS) -o $@
+
+test_performance : test_performance.o simplification_bezier2.o image.o contour.o simplification_contour.o sequence_point.o sequence_bezier2.o geometrie.o EPS.o bezier.o 
 	@echo ""
 	@echo "---------------------------------------------"
 	@echo "Creation de l'executable "$@
