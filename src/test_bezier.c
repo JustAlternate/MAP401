@@ -38,6 +38,7 @@ void test_distance_point_bezier2(){
     Point tab[] = {nouveau_point(0,0),nouveau_point(1,0),nouveau_point(1,1),nouveau_point(1,2),
                   nouveau_point(2,2),nouveau_point(3,2),nouveau_point(3,3),nouveau_point(4,3),
                   nouveau_point(5,3)};
+
     // Les distances que l'on doit obtenir selon l'exemple page 51.
     double tab_res[] = {0.0,0.824958,0.151523,0.606091,0.033672,0.454569,0.555584,0.235702,0.0};
 
@@ -45,10 +46,6 @@ void test_distance_point_bezier2(){
         double distance = distance_point_courbe_bezier2(tab[i], bez, i/8.0);
         printf("Distance : %lf  ",distance);
         afficher_resultat_test(environ_egual(distance,tab_res[i]));
-
-        // debug : 
-        //Point Pegual = applique_bezier2_point(bez, i/8.0);
-        //printf("On applique la courbe au point : B2(%lf)=(%lf,%lf)\n",i/8.0,Pegual.x,Pegual.y);
     }
 }
 
@@ -78,7 +75,6 @@ void test_approx_bezier2(){
     afficher_resultat_test(environ_egual(bez.C1.x,1.547619) && (environ_egual(bez.C1.y, 2.452381)));
     printf("C2 : (%lf.%lf)\n",bez.C2.x, bez.C2.y); 
     afficher_resultat_test(environ_egual(bez.C2.x,5.0) && (environ_egual(bez.C2.y, 3.0)));
-
     printf("\n");
 }
 
