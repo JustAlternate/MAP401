@@ -45,6 +45,7 @@ void supprimer_Dessin_Bezier2(Dessin_Bezier2 L);
 Dessin_Bezier2 concatener_Dessin_Bezier2(Dessin_Bezier2 L1, Dessin_Bezier2 L2);
 void print_Dessin_Bezier2(Dessin_Bezier2 *L);
 int nombre_Motif_dans_Dessin_Bezier2(Dessin_Bezier2 L);
+int nombre_Bezier2_dans_Dessin(Dessin_Bezier2 D);
 
 
 #endif

@@ -98,6 +98,17 @@ int nombre_Bezier2(Motif_Bezier2 L){
 	}
 	return nb;
 }
+
+int nombre_Bezier2_dans_Dessin(Dessin_Bezier2 D){
+	int nb = 0;
+	Cellule_Dessin_Bezier2* cur = D.first;
+	while(cur!=NULL){
+		nb += nombre_Bezier2(cur->val);
+		cur = cur->suiv;
+	}
+	return nb;
+}
+
 //#################
 // Dessin_Bezier2//
 //#################
