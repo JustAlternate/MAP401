@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #include "geometrie.h"
 #include "types_macros.h"
@@ -64,21 +66,5 @@ int main(int argc, char** argv){
     tester_image("../IMAGES_TEST/ColombesDeLaPaix.pbm", "../RESULTATS/ColombesDeLaPaix_douglas_peucker_d=30", 30);
     tester_image("../IMAGES_TEST/deux-des-pleins.pbm", "../RESULTATS/deux-des-pleins_douglas_peucker_d=30", 30);
 
-    /*
-    jeu_de_test();
-    generation_resultats_tache6();
-/
-    if (argc != 7){
-        printf("Usage: ./test_simplification_contour P.x P.y A.x A.y B.x B.y\n");
-        return 1;
-    }
-    Point P = nouveau_point(atof(argv[1]),atof(argv[2]));
-    Point A = nouveau_point(atof(argv[3]),atof(argv[4]));
-    Point B = nouveau_point(atof(argv[5]),atof(argv[6]));
-
-
-    double resultat = distance_point_segment(P, A, B);
-    printf("distance_point_segment = %f \n",resultat);
-*/
     return 0;
 }
