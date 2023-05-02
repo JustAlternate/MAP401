@@ -7,6 +7,13 @@
 #include "bezier.h"
 
 Bezier2 approx_bezier2(Cellule_Point *depart, Cellule_Point* fin, int n){
+	/*
+	approx_bezier2 : implémentation de la formule donnée en cours.
+					le contour est sous forme de liste chaînée 
+	depart :		première cellule du contour donné en argument.
+	depart :		dernière cellule du contour donné en argument.
+	n :				ombre d'éléments-1 (n utilisé dans approx_bezier (codé çi-dessus et donné dans le cours)).
+	*/
     Bezier2 bez;
     if (n == 1){
         bez = init_bezier2(depart->val, produit_point(0.5, addition_point(depart->val, fin->val)), fin->val);
@@ -33,7 +40,13 @@ Bezier2 approx_bezier2(Cellule_Point *depart, Cellule_Point* fin, int n){
 
 Motif_Bezier2 simplification_douglas_peucker_Bezier2(Cellule_Point* Pj1, Cellule_Point* Pj2, double d, int nb_elem){
 	/*
-	nb_elem: nombre d'element-1 (n utilisé dans approx_bezier)
+	simplification_douglas_peucker_Bezier2 : simplifie le contour (liste chainée de segments) donné en argument en une liste (chainée) de courbes de bezier de degré 2.
+		Le contour donné en argument est sous forme de liste chainée et Pj1 est le premier élément et Pj2 est  le dernier élément du contour.
+		L'algorithme donnee dans le cours a ete adapté pour mieux seoir aux listes chainees.
+	Pj1 :		première cellule du contour donné en argument.
+	Pj2 :		dernière cellule du contour donné en argument.
+	d :			distance-seuil.
+	nb_elem : 	nombre d'éléments-1 (n utilisé dans approx_bezier (codé çi-dessus et donné dans le cours)).
 	*/
 
 	Cellule_Point* Pk = Pj1;
@@ -72,6 +85,11 @@ Motif_Bezier2 simplification_douglas_peucker_Bezier2(Cellule_Point* Pj1, Cellule
 }
 
 Dessin_Bezier2 *simplification_Bezier2(Liste_Contour* LCont, float d){
+	/*
+	simplification_Bezier2 : fonction qui applique l'algorithme douglas peucker à chaque contour de la liste de ocntour donnée en argument?
+	LCont : 	Liste de contour
+	d : 		distance-seuil
+	*/
 	Cellule_Contour* cur = LCont->first;
 	Dessin_Bezier2* LContS = creer_Dessin_Bezier2();
 	while (cur != NULL){
