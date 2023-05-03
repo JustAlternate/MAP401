@@ -55,6 +55,20 @@ pour acceder a la tache 3.
 
 ## Tache 1
 
-Completion du module image : écriture des fonctions ecrire_image et negatif_image.
+Completion du packetage image : écriture des fonctions ecrire_image et negatif_image.
 Note : Pour la fonction negatif(Image) nous avons decidé d'utiliser une formule arithmetique plutot que d'utiliser un if pour savoir si le pixel est noir ou blanc et apres le changer.
+
+Test du module image : nous testons toutes les fonctions du module image même celles que nous n'avons pas implémenté nous même. 
+Le programme test_image.c lance 2 ou 3 tests sur TOUTES les fonctions du module image.
+De plus ce programme test les 2 fonctions 'ecrire_image' et 'negatif_image' sur toutes les images du dossier IMAGES_TEST
+
+
+
+## Tache 2
+
+Paquetage geometrie 2D:
+
+Pour le paquetage geometrie nous avons décidé d'enregistrer les types Point et Vecteur sous forme de struct et de ne pas utiliser de pointeurs dans les fonctions. Les pointeurs complexifiraient trop le code pour un bénéfice inexistant ou négligeable. Nous avons implémenté toutes les fonctions géométriques expliqués dans le cours.
+
+Nous tenons à faire remarquer que nous ne nous sommes pas servis de l'implémentation des vecteurs lors du reste du projet. A moins que l'exercice d'implémentation vous semble intérressant (elle ne diffère que très peu de l'implementation des points), je propose que l'implémentation des vecteurs ne soit plus requise l'année prochaine.
 
