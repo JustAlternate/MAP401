@@ -49,3 +49,12 @@ Pour trouver une tache précisement changer de branche.
 
 Exemple : git switch tache3
 pour acceder a la tache 3.
+
+
+# Travail dans chaque tache
+
+## Tache 1
+
+Completion du module image : écriture des fonctions ecrire_image et negatif_image.
+Note : Pour la fonction negatif(Image) nous avons decidé d'utiliser une formule arithmetique plutot que d'utiliser un if pour savoir si le pixel est noir ou blanc et apres le changer.
+
