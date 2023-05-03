@@ -291,7 +291,7 @@ faire_simplification_bezier2 : faire_simplification_bezier2.o simplification_bez
 test_performance : test_performance.o simplification_bezier2.o image.o contour.o simplification_contour.o sequence_point.o sequence_bezier2.o geometrie.o EPS.o bezier.o 
 	@echo ""
 	@echo "---------------------------------------------"
-	@echo "Creation de l'executable "$@
+	@echo "Creation des executables "$@
 	@echo "---------------------------------------------"
 	$(CC) $^ $(LDOPTS) -o $@
 
@@ -302,32 +302,38 @@ tests:
 	@sleep 5
 	make all
 	@echo "---------------------------------------------"
-	@echo "Lancement test_image"
-	@echo "---------------------------------------------"
-	@sleep 5
-	#./test_image
-	@echo "---------------------------------------------"
-	@echo "Lancement test_geometrie"
+	@echo "Lancement test_geometrie dans 5 secondes..."
 	@echo "---------------------------------------------"
 	@sleep 5
 	./test_geometrie
 	@echo "---------------------------------------------"
-	@echo "Lancement test_contour"
+	@echo "Lancement test_contour dans 5 secondes..."
 	@echo "---------------------------------------------"
 	@sleep 5
 	./test_contour
 	@echo "---------------------------------------------"
-	@echo "Lancement test_EPS"
+	@echo "Lancement test_EPS dans 5 secondes..."
 	@echo "---------------------------------------------"
 	@sleep 5
 	./test_EPS
 	@echo "---------------------------------------------"
-	@echo "Lancement test_bezier"
+	@echo "Lancement test_bezier dans 5 secondes..."
 	@echo "---------------------------------------------"
 	@sleep 5
 	./test_bezier
+	@echo "---------------------------------------------"
+	@echo "Lancement test_simplification_contour dans 5 secondes..."
+	@echo "---------------------------------------------"
+	@sleep 5
+	./test_simplification_contour
+	@echo "---------------------------------------------"
+	@echo "Lancement test_simplification_bezier2 dans 5 secondes..."
+	@echo "---------------------------------------------"
+	@sleep 5
+	./test_simplification_bezier2
 	@echo "--------------------------"
 	@echo "make tests a bien réussi !"
+	@echo "--------------------------"
 
 # regle pour "nettoyer" le r�pertoire
 clean:
