@@ -1,7 +1,6 @@
 cd ../src
 make
 
-
 echo "######### segment #########"
 while read ligne
 do
