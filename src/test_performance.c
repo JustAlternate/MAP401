@@ -38,8 +38,8 @@ void tester_image_segment(char* nom_entree, char* nom_sortie, double d){
     int nombre_segments_image = nombre_segments_Liste_Contour(*LC_cont);
     int nombre_segment_simplifier = nombre_segments_Liste_Contour(*LC_simplifier);
     printf("Informations:\n");
-    printf("Image d'origine : \n  -nombre de contours:%d\n  -nombre de segments:%d \n",nombre_contours_image, nombre_segments_image);
-    printf("Image simplifiée : \n  -nombre de segments:%d\n",nombre_segment_simplifier);
+    printf("Image d'origine : \n  -nombre de contours : %d\n  -nombre de segments : %d \n",nombre_contours_image, nombre_segments_image);
+    printf("Image simplifiée : \n  -nombre de segments : %d\n",nombre_segment_simplifier);
 
     enregistrer_liste_contour_vers_EPS(LC_simplifier, nom_sortie, 1, img.la_largeur_de_l_image, img.la_hauteur_de_l_image);
 
@@ -61,8 +61,8 @@ void tester_image_bezier2(char* nom_entree, char* nom_sortie, double d){
     int nombre_segments_image = nombre_segments_Liste_Contour(*LC_cont);
     int nombre_segment_simplifier = nombre_Bezier2_dans_Dessin(*Dessin);
     printf("Informations:\n");
-    printf("Image d'origine : \n  -nombre de contours:%d\n  -nombre de segments:%d \n",nombre_contours_image, nombre_segments_image);
-    printf("Image simplifiée : \n  -nombre de bezier2:%d\n",nombre_segment_simplifier);
+    printf("Image d'origine : \n  -nombre de contours : %d\n  -nombre de segments : %d \n",nombre_contours_image, nombre_segments_image);
+    printf("Image simplifiée : \n  -nombre de bezier2 : %d\n",nombre_segment_simplifier);
 
     enregister_dessin_Bezier2_vers_EPS(Dessin, nom_sortie, img.la_largeur_de_l_image, img.la_hauteur_de_l_image);
 
@@ -74,7 +74,7 @@ void tester_image_bezier2(char* nom_entree, char* nom_sortie, double d){
 int main(int argc, char** argv){
 
     if (argc != 4){
-        printf("usage: %s <nom_image> <distance_seuil> <format=s(segment) b(bezier2)> \n", argv[0]);
+        printf("usage : %s <nom_image> <distance_seuil> <format=s(segment) b(bezier2)> \n", argv[0]);
         return 1;
     }
 	char* name_img = malloc(sizeof(char)*strlen(argv[1]) + 30);
