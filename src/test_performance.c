@@ -26,7 +26,7 @@ void afficher_resultat_test(int b){
     }
 }
 
-void tester_image_segment(char* nom_entree, char* nom_sortie, int d){
+void tester_image_segment(char* nom_entree, char* nom_sortie, double d){
     printf("simplification segment: %s -> %s\n", nom_entree, nom_sortie);
 
     Image img = lire_fichier_image(nom_entree);
@@ -48,6 +48,29 @@ void tester_image_segment(char* nom_entree, char* nom_sortie, int d){
     supprimer_image(&img);
 }
 
+
+void tester_image_bezier2(char* nom_entree, char* nom_sortie, double d){
+    printf("simplification bezier2: %s -> %s\n", nom_entree, nom_sortie);
+
+    Image img = lire_fichier_image(nom_entree);
+
+    Liste_Contour * LC_cont = recherche_tous_les_contours(img);
+    Dessin_Bezier2 *Dessin = simplification_Bezier2(LC_cont, d);
+    
+    int nombre_contours_image = nombre_Contour(*LC_cont);
+    int nombre_segments_image = nombre_segments_Liste_Contour(*LC_cont);
+    int nombre_segment_simplifier = nombre_Bezier2_dans_Dessin(*Dessin);
+    printf("Informations:\n");
+    printf("Image d'origine : \n  -nombre de contours:%d\n  -nombre de segments:%d \n",nombre_contours_image, nombre_segments_image);
+    printf("Image simplifiée : \n  -nombre de bezier2:%d\n",nombre_segment_simplifier);
+
+    enregister_dessin_Bezier2_vers_EPS(Dessin, nom_sortie, img.la_largeur_de_l_image, img.la_hauteur_de_l_image);
+
+    supprimer_Dessin_Bezier2(*Dessin);
+    supprimer_liste_Contour(*LC_cont);
+    supprimer_image(&img);
+}
+
 int main(int argc, char** argv){
 
     if (argc != 4){
@@ -62,8 +85,8 @@ int main(int argc, char** argv){
     strcpy(name_simplifier,"../RESULTATS/");
     strcat(name_simplifier,argv[1]);
 
-    int d;
-    sscanf(argv[2], "%d", &d);
+    double d;
+    sscanf(argv[2], "%lf", &d);
 
     if (strcmp("s",argv[3])==0) {
         //mode segment
@@ -73,7 +96,10 @@ int main(int argc, char** argv){
         strcat(name_simplifier,".eps");
         tester_image_segment(name_img, name_simplifier, d);
     }else{
-        printf("pas encore inplementé");
+        strcat(name_simplifier,"_bezier2_d=");
+        strcat(name_simplifier,argv[2]);
+        strcat(name_simplifier,".eps");
+        tester_image_bezier2(name_img, name_simplifier, d);
     }
 
     return 0;

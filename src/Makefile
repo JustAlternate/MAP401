@@ -34,7 +34,7 @@ LDOPTS = -L$(LIBDIR) -lm
 INCLUDEOPTS = -I$(INCDIR)
 
 # options de compilation
-COMPILOPTS = -g -Wall $(INCLUDEOPTS)
+COMPILOPTS = -O2 -g -Wall $(INCLUDEOPTS)
 
 # liste des executables
 EXECUTABLES = test_image test_geometrie test_contour test_EPS test_simplification_contour distance_point_segment simplifier_segment test_bezier test_simplification_bezier2 faire_simplification_bezier2 test_performance

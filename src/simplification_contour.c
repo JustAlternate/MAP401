@@ -5,7 +5,7 @@
 #include "sequence_point.h"
 #include "contour.h"
 
-Contour simplification_douglas_peucker(Cellule_Point* Pj1, Cellule_Point* Pj2, int d){
+Contour simplification_douglas_peucker(Cellule_Point* Pj1, Cellule_Point* Pj2, double d){
 
 	Cellule_Point* Pk = Pj1;
 	Cellule_Point* Pj = Pj1->suiv;
@@ -25,7 +25,7 @@ Contour simplification_douglas_peucker(Cellule_Point* Pj1, Cellule_Point* Pj2, i
 	}
 
 	Contour L = creer_liste_Point();
-	if (dmax <= (double) d){
+	if (dmax <= d){
 		ajouter_element_liste_Point(&L,Pj2->val);
 	}
 	else{
@@ -37,7 +37,7 @@ Contour simplification_douglas_peucker(Cellule_Point* Pj1, Cellule_Point* Pj2, i
 	return L;
 }
 
-Contour enrobage_douglas(Contour Cont, int d){
+Contour enrobage_douglas(Contour Cont, double d){
 	Contour L = simplification_douglas_peucker(Cont.first, Cont.last, d);
 	Contour petit_L = creer_liste_Point();
 	ajouter_element_liste_Point(&L, Cont.first->val);
@@ -46,7 +46,7 @@ Contour enrobage_douglas(Contour Cont, int d){
 }
 
 
-Liste_Contour *simplification_segment(Liste_Contour* LCont, int d){
+Liste_Contour *simplification_segment(Liste_Contour* LCont, double d){
 	Cellule_Contour* cur = LCont->first;
 	Liste_Contour* LContS = creer_liste_Contour();
 	while (cur != NULL){
