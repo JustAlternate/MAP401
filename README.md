@@ -72,5 +72,50 @@ Nous tenons à faire remarquer que nous ne nous sommes pas servis de l'implémen
 
 
 
+## Tache 7
+
+**Paquetage bezier :**
+
+Ce paquetage represente simplement toute les fonctions qui sont utilisé pour manipuler des courbes de bezier.
+
+**Paquetage test_bezier :**
+
+Test les focntion distance_point_courbe_bezier2 avec l'exemple page 51 du poly ainsi que la fonction approx_bezier2 de la page 50 du poly.
+
+**Paquetage sequence_bezier2 :**
+
+Dans celui-çi on a réimplémenter toutes les structures de données de pour notre courbe de bézier.  
+On a donc inventé les structure Motif et Dessin.  
+Un Motif est une liste chainée contenant des cellules pointant vers des courbes de bézier2.  
+Un Dessin est une liste chainée contenant des cellules pointant vers des Motif.  
+
+**Paquetage simplification_bezier2 :**
+
+Dans ce fichier, on a implémenter la fonction simplification_douglas_peucker_Bezier2 avec des liste chainée. Celle çi nous renvoie un Motif_Bezier2.
+
+**Paquetage test_simplification_bezier2 :**
+
+Ce genere les resultats pour la tache 7 partie 1.
+(Elle test donc la fonction douglas_peucker avec d = 1, 3, 10 et 30)
+
+**Paquetage faire_simplification_bezier2 :**
+
+fichier pour generer des images EPS, prend en arguments un nom de fichier, un nom de sortie et une distance seuil, et applique donc la simplification par courbe de bezier2 sur cette image.
+
 ## Tache 8
+
+**Paquetage test_performance :**
+
+Dans ce paquetage nous avons créer une commande qui prend un nom de fichier, une distance seuil et la méthode pour simplifier. Et génère l'image EPS equivalente avec la simplification demandées. ainsi que les statistiques equivalente (nombre de contours et segments de l'image d'origine et nombre de segments de l'image simplifiée.)
+
+**Paquetage génération_tache8_part2.sh :**
+
+Qui prend les noms d'images qui sont dans le fichier fichiers_performance.txt et les simplifie automatique en segments et en bézier avec une distance seuil = [0, 0.5, 1, 2, 4, 8, 16]
+
+Au final en comparant les différentes images générées on peut remarquer plusieur choses :
+
+- Il semblerait que notre projet soit assez bien optimisée car notre plus grosse image test prend 8 secondes a simplifier.
+
+- On remarque aussi que la simplification par courbe de bezier semble plus efficace que celle par segments. On a des images simplifiée plus proche de l'image réel, et avec moins d'éléments.
+
 
