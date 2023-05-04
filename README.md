@@ -7,7 +7,6 @@ Dans ce projet vous retrouverer des simplifications par contour, par courbes de 
 
 `git clone https://github.com/JustAlternate/MAP401`
 
-
 # Architecture du Projet
 
 - divers : Les pdf de compte rendu des différentes taches et suivi de projet.  
@@ -32,24 +31,22 @@ Ou bien vous pouvez le faire automatique en faisant `make tests`
 
 `make tests` execute les fichiers suivants :
 
-- ~~test_image~~ : test le paquetage de la tache1 (faite le a la main `./test_image`)
-- test_geometrie
-- test_contour
-- test_EPS
-- test_bezier
-- test_simplification_contour
-- test_simplification_bezier2 
+- ~~test_image~~ : test le paquetage de la tache1 (faite le a la main `./test_image`).  
+- test_geometrie : test le paquetage de la tache2.  
+- test_contour : test notre implémentation des contour en liste chainée.  
+- test_EPS : test notre conversion dans le format EPS.  
+- test_bezier : test notre implémentation des courbes de bezier. (fonctions "distance_point_bezier2", "approx_bezier2")  
+- test_simplification_contour : test les fonctions "distance_point_segment", genere aussi les resultats de la tache6.  
+- test_simplification_bezier2 : test les fonctions "simplification_bezier2" en generant les images resultats de la tache7.  
 
+4) Aller dans le dossier RESULTATS pour regarder que tout a bien était générée correctement.  
 
-4) Aller dans le dossier RESULTATS pour regarder que tout a bien était générée correctement.
+Cette branche est actuellement à jour avec la branche tache8.  
 
-Cette branche est actuellement à jour avec la branche tache8.
-
-Pour trouver une tache précisement changer de branche.
+Pour trouver une tache précisement changer de branche.  
 
 Exemple : git switch tache3
 pour acceder a la tache 3.
-
 
 # Travail dans chaque tache
 
@@ -61,8 +58,6 @@ Note : Pour la fonction negatif(Image) nous avons decidé d'utiliser une formule
 Test du module image : nous testons toutes les fonctions du module image même celles que nous n'avons pas implémenté nous même. 
 Le programme test_image.c lance 2 ou 3 tests sur TOUTES les fonctions du module image.
 De plus ce programme test les 2 fonctions 'ecrire_image' et 'negatif_image' sur toutes les images du dossier IMAGES_TEST
-
-
 
 ## Tache 2
 
