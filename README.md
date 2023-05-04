@@ -84,9 +84,13 @@ Nous avons commencé par faire la fonction trouver_pixel_depart qui cherche un p
 **Paquetage sequence_point :**
 La plus part des fonctions et types de ce paquetage sont issus de paquetage fourni : « exemple_sequence_point.c ». Certains Noms ont étés modifiés et deux fonctions ont étés écrites : print_line_Point et nombre_segments.
 
+## tache 4
 
 
+## Tache 5
 
+
+## Tache 6
 
 
 ## Tache 7
