@@ -10,6 +10,9 @@
 #include "contour.h"
 
 Point trouver_pixel_depart(Image I){
+	// Fonction qui prend un image et trouve le pixel de départ,
+	// suviant l'algorithme du poly.
+	// Renvoie un Point p
 	int h_img = hauteur_image(I)+1;
 	int l_img = largeur_image(I)+1;
 	for (double i=1; i<h_img;i++){
@@ -22,11 +25,16 @@ Point trouver_pixel_depart(Image I){
 			}
 		}
 	}
+	// Si aucun point n'a été trouvait, on renvoie le point 0,0
+	// Ceci est une convention que nous avons fixé pour ne pas complexifier le code
+	// avec des gestions d'exceptions et d'erreur (surtout que je sais pas trop le faire en C)
 	Point p = nouveau_point(0,0);
 	return p;
 }
 
 Point avancer(Point pos, Orientation ori){
+	// Cette fonction permet de faire avancer notre robot en fonction de l'orientation
+	// Renvoie un Point (la nouvelle position du robot)
 	switch (ori){
 		case Est:
 			pos.x++;
@@ -45,6 +53,7 @@ Point avancer(Point pos, Orientation ori){
 }
 
 Orientation nouvelle_orientation(Point pos, Orientation ori, Image I){
+	// Prend une position, une orientation et une image et calcule l'orientation suivante en fonction de la théorie du poly.
 	switch (ori){
 		case Nord:
 			if(get_pixel_image(I,(int)pos.x,(int)pos.y)){
