@@ -98,7 +98,8 @@ Les fonction de '`Liste_Contour`' sont les mêmes que pour '`Liste_Point`' (à p
 
 **Paquetage test_contour :**
 
-Dans ce fichier nous avons fait 3 tests ppour la fonction trouver_pixel_depart qui sont automatisé, puis aussi 3 tests pour la fonction recherche_contour, qui affiche a l'écran la liste des points pour les 3 images test que nous avons spécialement conçus pour nos tests.
+Dans ce fichier nous avons fait 3 tests automatiques (pas de demande d'image à tester) pour la fonction '`trouver_pixel_depart`'.
+Nous avons 3 autres tests pour la fonction '`recherche_contour`', qui affiche a l'écran la liste des points trouvés par la fonction pour 3 images test spécifiquement conçus pour nos tests.
 
 
 
