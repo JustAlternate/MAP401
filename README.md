@@ -67,3 +67,10 @@ Pour le paquetage geometrie nous avons décidé d'enregistrer les types Point et
 
 Nous tenons à faire remarquer que nous ne nous sommes pas servis de l'implémentation des vecteurs lors du reste du projet. A moins que l'exercice d'implémentation vous semble intérressant (elle ne diffère que très peu de l'implementation des points), je propose que l'implémentation des vecteurs ne soit plus requise l'année prochaine.
 
+
+
+
+
+
+## Tache 8
+
