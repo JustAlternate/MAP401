@@ -110,6 +110,19 @@ Dans ce fichier nous avons fait 3 tests ppour la fonction trouver_pixel_depart q
 
 ## Tache 6
 
+**Paquetage geometrie :**
+
+Nous avons fait le choix de retourner dans notre paquetage géometrie pour implémenter la fonction `distance_point_segment` qui selon nous merite d'être dans ce paquetage et qui nous permet de calculer la distance entre 2 points selon l'algorithme du poly de la tache 6.
+
+**Paquetage simplification_contour :**
+
+Dans celui çi nous avons implémenté la fonction `simplification_douglas_peucker` que nous avons remanié à notre sauce pour la faire fonctionner avec notre implémentation de liste chainée (car dans le poly, le pseudo code de cette fonction est pour une implémentation de tableau).
+Les autres fonctions de ce paquetage sont des fonction d'enrobage qui nous facilite la vie pour les tests.
+
+**Paquetage test_simplification_contour :**
+
+Dans cette fonction de test, nous avons verifier 10 cas de figure pour notre fonction `distance_point_segment` (voir le code pour connaitre les cas testés).  
+Nous avons automatisé la generation des simplification par contour des images : image_poly_tache6.pbm, elephant-gotlib.pbm, cheval.pbm, ...
 
 ## Tache 7
 
@@ -140,6 +153,20 @@ Ce genere les resultats pour la tache 7 partie 1.
 **Paquetage faire_simplification_bezier2 :**
 
 fichier pour generer des images EPS, prend en arguments un nom de fichier, un nom de sortie et une distance seuil, et applique donc la simplification par courbe de bezier2 sur cette image.
+
+**Commentaire :**
+
+Nous avons pris beaucoup de temps dans la réalisation de cette tache qui selon nous était la plus importante et la plus complexe.  
+Dans cette tache nous avons du :  
+- Créer les types : Bezier2, Motif_Bezier2, Dessin_Bezier2  
+- Créer les fonctions de création et calculs sur les courbe de bézier 2  
+- Faire des tests sur notre implémentation des courbe de bézier 2  
+- Créer l'algorithme de simplification de courbe de bezier 2  
+- Faire les tests sur l'implémentation de l'algo de simplification  
+- Et enfin generer tout les résultats et images attendus pour le compte rendu de cette tache.  
+
+Donc en somme beaucoup de boulot dans cette tache, surtout que noue étions arrivait a la phase où l'on se rend compte que notre projet est gros.  
+On mettait a chaque debut de séance 20 minutes a se rappeler de ce que l'on était entrain de faire à la dernière séance.  
 
 ## Tache 8
 
