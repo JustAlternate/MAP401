@@ -69,6 +69,8 @@ De plus ce programme test les 2 fonctions 'ecrire_image' et 'negatif_image' sur 
 
 Pour le paquetage geometrie nous avons décidé d'enregistrer les types Point et Vecteur sous forme de struct et de ne pas utiliser de pointeurs dans les fonctions. Les pointeurs complexifiraient trop le code pour un bénéfice inexistant ou négligeable. Nous avons implémenté toutes les fonctions géométriques expliqués dans le cours.
 
+**Commentaire :**
+
 Nous tenons à faire remarquer que nous ne nous sommes pas servis de l'implémentation des vecteurs lors du reste du projet. A moins que l'exercice d'implémentation vous semble intérressant (elle ne diffère que très peu de l'implementation des points), je propose que l'implémentation des vecteurs ne soit plus requise l'année prochaine.
 
 **Test du paquetage geometrie 2D :**
@@ -78,11 +80,27 @@ Pour le paquetage de test de geometrie nous avons testé tous les fonctions avec
 ## Tache 3
 
 **Paquetage contour :**
-Nous avons commencé par faire la fonction trouver_pixel_depart qui cherche un pixel pour commencer la recherche d'un contour (si jamais l'image est completement blanche retourne un point de coordonnée (0,0)) puis nous avons fait la fonction recherche contour qui appelle les sous fonctions avancer et nouvelle orientation qui permet de créer une liste chainée dans laquelle nous avons mis les coordonnées des points qui forme un contour.
+
+Nous avons commencé par faire la fonction trouver_pixel_depart qui cherche un pixel pour commencer la recherche d'un contour. La fonction donneras toujours le même pixel (si jamais l'image est completement blanche, elle retourne un point de coordonnée (0,0)).
+Nous avons écrit la fonction recherche contour qui stocke les coordonnées des points qui forment un contour sous forme de liste chaînée.
+Cette fonction fonctionne sous forme de petit automate qui est positionné au bord du contours et qui avance (avec la fonction avancer) et tourne (avec la fonction nouvelle_orientation) selon la procédure décrite dans le cours.
+D'autres fonctions seront rajouté plus tard.
 
 
 **Paquetage sequence_point :**
+
 La plus part des fonctions et types de ce paquetage sont issus de paquetage fourni : « exemple_sequence_point.c ». Certains Noms ont étés modifiés et deux fonctions ont étés écrites : print_line_Point et nombre_segments.
+Nous avons décidé que nous n'implémenterons pas de tableaux et que ce pacquetage serait donc fort fortemet fournis.
+Nous avons donc donné un deuxième nom à '`Liste_Point`' qui n'est autre que '`Contour`' car cela représent un contours dans notre codes.
+En plus des '`Contour`'/'`Liste_Point`', nous avons implémenté les '`Liste_Contour`' dont chaque cellule contient une '`Liste_Point`' aussi appelé '`Contour`'.
+Les fonction de '`Liste_Contour`' sont les mêmes que pour '`Liste_Point`' (à part les fonctions de comptage tel nombre_segment...)
+
+
+**Paquetage test_contour :**
+
+Dans ce fichier nous avons fait 3 tests ppour la fonction trouver_pixel_depart qui sont automatisé, puis aussi 3 tests pour la fonction recherche_contour, qui affiche a l'écran la liste des points pour les 3 images test que nous avons spécialement conçus pour nos tests.
+
+
 
 ## tache 4
 
