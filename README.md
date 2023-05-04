@@ -124,6 +124,25 @@ La fonction '`dessiner_contour`' n'écrit désormais plus dans le fichier eps 's
 
 **Paquetage contour :**
 
+Nous avons ajouté une fonction appellée '`recherche_tous_les_contours`' qui prend en argument une image et qui a pour but de faire le mask et créer la liste chainée de tout les contours. 
+De plus, nous avons écrit la fonction '`sauvegarde_LC_contour`' qui permet de sauvegarder une liste de contours dans un fichier.
+Enfin, la fonction '`recherche_contour_et_image_mask`' fait comme '`recherche_contour`' mais met a jour le mask en même temps. 
+
+**Paquetage test_contour :**
+
+Nous avons testé la fonction '`recherche_tous_les_contours`' via '`recherche_tous_les_contours`' sur *'contour_simple.pbm'*.
+
+**Paquetage test_EPS :**
+
+Nous avons ajouté la fonctions '`test_dessiner_contour`' qui prend une image et qui test que l'on arrive bien à la redessiner en postscript (ET ça marche!).
+Et on a aussi ajouté la fonction '`test_dessiner_contour_CR_TACHE5_PARTIE2`' juste pour generer les fichiers demandé dans le compte rendu.
+
+
+**Note :**
+Nous avions implémenté les listes de contour de la mauvaise façon. Nous avons donc passé pas mal de temps à réparer ce qui ne marchait pas (le problème était que nous n'utilisons pas de pointeurs pour les listes chainée de liste chainée alias '`Liste_Contour`'.)
+
+Dans cette partie nous avons revue notre arborescence. C'est cel que nous avons aujourd'hui. 
+Cela implique que nous avons modifié quelques fonctions de test qui allaient chercher des fichier de test.
 
 ## Tache 6
 
