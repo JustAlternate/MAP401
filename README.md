@@ -119,6 +119,13 @@ Pour les fonctions '`init_fichier_eps`' et '`ecrire_ligne`' nous avons réalisé
 
 ## Tache 5
 
+
+**Paquetage EPS :**
+
+La fonction '`dessiner_contour`' n'écrit désormais plus dans le fichier eps 'showpage' et 'fill' car on veut pouvoir appeler cette fonction plusieurs fois.
+
+**Paquetage contour :**
+
 
 ## Tache 6
 
