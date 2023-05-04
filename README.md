@@ -136,3 +136,14 @@ Au final en comparant les différentes images générées on peut remarquer plus
 - On remarque aussi que la simplification par courbe de bezier semble plus efficace que celle par segments. On a des images simplifiée plus proche de l'image réel, et avec moins d'éléments.
 
 
+
+| Asterix                              | $d=1$                                      | $d=2$                                      | $d=4$                                      | $d=8$                                      |
+|:------------------------------------:| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| Simplification par segments          | ![Asterix_s_d=1.png](divers/img_CR/Asterix3_segment_d=1.png) | ![Asterix_s_d=2.png](divers/img_CR/Asterix3_segment_d=2.png) | ![Asterix_s_d=4.png](divers/img_CR/Asterix3_segment_d=4.png) | ![Asterix_s_d=8.png](divers/img_CR/Asterix3_segment_d=8.png) |
+| Simplification par courbe de bezier2 | ![Asterix_b_d=1.png](divers/img_CR/Asterix3_bezier2_d=1.png)) | ![Asterix_b_d=2.png](divers/img_CR/Asterix3_bezier2_d=2.png) | ![Asterix_b_4.png](divers/img_CR/Asterix3_bezier2_d=4.png) | ![Asterix_b_8.png](divers/img_CR/Asterix3_bezier2_d=8.png) |
+
+
+
+## Diagramme de GANT
+
+![img_gant](divers/Gant_Final.png)
