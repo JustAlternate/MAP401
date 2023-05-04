@@ -1,6 +1,5 @@
 # MAP401
 
-
 Ceci est notre projet logiciel de map401 "vectorisations et simplification d'image bitmap"  
 Dans ce projet vous retrouverez des simplifications par contour, par courbes de bezier de degré 2 et de la génération d'images Postscript.
 
@@ -102,10 +101,19 @@ Les fonction de '`Liste_Contour`' sont les mêmes que pour '`Liste_Point`' (à p
 
 Dans ce fichier nous avons fait 3 tests pour la fonction trouver_pixel_depart qui sont automatisés, puis aussi 3 tests pour la fonction recherche_contour, qui affichent à l'écran la liste des points pour les 3 images tests que nous avons spécialement conçues pour nos tests.
 
-
-
 ## tache 4
 
+**Paquetage EPS :**
+
+Nous avons créer un fichier EPS.c qui permet d'écrire des fichier dans le format postscript. Pour cela nous avons réaliser une fonction '`init_fichier_eps`' qui permet de créer le fichier avec l'extension .eps puis de remplir l'entête du fichier ainsi que de nous renvoyer le pointeur vers le fichier ouvert.
+La fonction dessinner ligne prend une ligne puis l'écrit dans le fichiers. Nous nous somme rendu compte plus tard que cette fonction ne pouvait pas bien être utilisé par la fonction qui écrit un contours en entier.
+`'dessiner_contour`' prend un contour et l'écrit dans le fichier EPS ouvert. Cette fonction est utilisé par '`enregistrer_liste_contour_vers_EPS`' qui prend une liste de contour et l'écrit dans le fichier EPS (sans en tête ni bas de fichier).
+Note : l'en-tête et le bas de fichier EPS sont les écrits qui ne se situent qu'en haut ou bas de fichier.
+
+**Paquetage test_EPS :**
+
+Pour ce paquetage nous avons procedés presque de la meme manière que pour les autre paquetage de test.
+Pour les fonctions '`init_fichier_eps`' et '`ecrire_ligne`' nous avons réalisée des tests autonomes grâce a une super strategie qu'a trouver Isak pour verifier que les lignes dans le fichier sont correctes. Pour ce qui est de la fonction '`dessiner_contour`' nous n'avons pas eu la foi d'automatiser ce test et avons rajouter un message dans nos tests pour expliquer a l'utilisateur que ces tests sont a verifier soit meme.
 
 ## Tache 5
 
