@@ -19,6 +19,7 @@ Vecteur nouveau_vecteur(double x,double y){
     v.x = x;
     v.y = y;
     return v;
+    /* coucou */
 }
 //crée un nouveau point de coordonée (x,y):  P(x,y)
 Point nouveau_point(double x,double y){
