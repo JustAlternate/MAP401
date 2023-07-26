@@ -1,6 +1,6 @@
 # MAP401
 
-Ceci est notre projet logiciel de map401 "vectorisations et simplification d'image bitmap"  
+Ceci est notre projet logiciel MAP401 de 2eme année de prépa intégrée "vectorisations et simplification d'image bitmap"  
 Dans ce projet vous retrouverez des simplifications par contour, par courbes de bezier de degré 2 et de la génération d'images Postscript.
 
 # Installation
