@@ -224,7 +224,7 @@ Au final en comparant les différentes images générées on peut remarquer plus
 
 | Asterix                              | $d=1$                                      | $d=2$                                      | $d=4$                                      | $d=8$                                      |
 |:------------------------------------:| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| Simplification par segments          | ![Asterix3d1](divers/img_CR/Asterix3_segment_d=1.png) | ![Asterix_s_d=2.png](divers/img_CR/Asterix3_segment_d=2.png) | ![Asterix_s_d=4.png](divers/img_CR/Asterix3_segment_d=4.png) | ![Asterix_s_d=8.png](divers/img_CR/Asterix3_segment_d=8.png) |
+| Simplification par segments          | ![Asterix_s_d=1.png](divers/img_CR/Asterix3_segment_d=1.png) | ![Asterix_s_d=2.png](divers/img_CR/Asterix3_segment_d=2.png) | ![Asterix_s_d=4.png](divers/img_CR/Asterix3_segment_d=4.png) | ![Asterix_s_d=8.png](divers/img_CR/Asterix3_segment_d=8.png) |
 | Simplification par courbe de bezier2 | ![Asterix_b_d=1.png](divers/img_CR/Asterix3_bezier2_d=1.png) | ![Asterix_b_d=2.png](divers/img_CR/Asterix3_bezier2_d=2.png) | ![Asterix_b_d=4.png](divers/img_CR/Asterix3_bezier2_d=4.png) | ![Asterix_b_d=8.png](divers/img_CR/Asterix3_bezier2_d=8.png) |
 
 
